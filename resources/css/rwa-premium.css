@@ -1,0 +1,266 @@
+/* Cinematic RWA Enhancements */
+
+:root {
+    --rwa-dark: #020617;
+    --rwa-red: #E11D48;
+    --rwa-red-glow: rgba(225, 29, 72, 0.5);
+    --rwa-glass: rgba(255, 255, 255, 0.05);
+    --rwa-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth Scrolling */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Subtle Global Background Glow */
+.cinematic-bg-glow {
+    position: relative;
+    z-index: 1;
+}
+
+.cinematic-bg-glow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vh;
+    background: radial-gradient(circle, rgba(225, 29, 72, 0.05) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Subtle Film Grain */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+}
+
+/* Section Transitions */
+.section-divider {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    margin: 0;
+    border: none;
+}
+
+/* Execution Cards Hover Lift */
+.service-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.service-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
+}
+
+.service-card:hover .service-icon i {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Cinematic Campaign Cards Section */
+.cinematic-campaigns-grid {
+    display: flex;
+    gap: 2rem;
+    align-items: center; /* Centers items vertically so small | large | small works */
+    justify-content: center;
+}
+
+.cinematic-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--rwa-dark);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    opacity: 0; /* For GSAP Reveal */
+    transform: translateY(40px); /* For GSAP Reveal */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    flex: 1; /* small cards take 1 part */
+    aspect-ratio: 3/4;
+}
+
+/* The Featured Center Card */
+.cinematic-card.featured {
+    flex: 1.5; /* large card takes 1.5 parts */
+    aspect-ratio: 4/5;
+    z-index: 2;
+}
+
+/* Images & Videos inside Cards */
+.cinematic-card img,
+.cinematic-card video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+.cinematic-card video {
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+
+/* Dark Gradient Overlay */
+.cinematic-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.4) 40%, rgba(2,6,23,0.15) 100%);
+    z-index: 3;
+    transition: background 0.5s ease;
+}
+
+/* Glassmorphism Pill Badge */
+.campaign-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 4;
+}
+
+/* Content Overlay */
+.campaign-content {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    z-index: 4;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.campaign-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+
+.featured .campaign-title {
+    font-size: 2rem;
+}
+
+.campaign-location {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.campaign-stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-pill {
+    color: var(--rwa-red);
+    background: rgba(225, 29, 72, 0.1);
+    padding: 0.2rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+    margin-top: 1rem;
+}
+
+/* Hover States (The Magic) */
+.cinematic-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 40px rgba(225, 29, 72, 0.15);
+}
+
+.cinematic-card:hover img {
+    transform: scale(1.05);
+}
+
+.cinematic-card:hover video {
+    opacity: 1; /* Show video */
+}
+
+.cinematic-card:hover::after {
+    background: linear-gradient(to top, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.5) 50%, rgba(2,6,23,0.3) 100%);
+}
+
+.cinematic-card:hover .campaign-content {
+    transform: translateY(-5px);
+}
+
+.cinematic-card:hover .view-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cinematic-card:hover .view-btn i {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 992px) {
+    .cinematic-campaigns-grid {
+        flex-direction: column;
+    }
+    .cinematic-card {
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+    .cinematic-card.featured {
+        aspect-ratio: 16/9;
+    }
+}

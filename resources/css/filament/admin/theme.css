@@ -1,0 +1,148 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+/* =========================================
+   CUSTOM UI: DARK SIDEBAR + LIGHT CONTENT
+   ========================================= */
+
+/* Force Sidebar to be Dark */
+.fi-sidebar,
+.fi-sidebar-nav {
+    background-color: #0d1117 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Sidebar Header / Logo Area */
+.fi-sidebar-header {
+    background-color: #0d1117 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Group Labels */
+.fi-sidebar-group-label {
+    color: #6b7280 !important;
+}
+
+/* Inactive Sidebar Items */
+.fi-sidebar-item-button {
+    color: #9ca3af !important;
+}
+.fi-sidebar-item-button .fi-icon {
+    color: #6b7280 !important;
+}
+
+/* Hover Sidebar Items */
+.fi-sidebar-item-button:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #e5e7eb !important;
+}
+
+/* Active Sidebar Items */
+.fi-sidebar-item-active > .fi-sidebar-item-button {
+    background-color: rgba(255, 59, 59, 0.1) !important;
+    color: #FF3B3B !important;
+}
+.fi-sidebar-item-active > .fi-sidebar-item-button .fi-icon {
+    color: #FF3B3B !important;
+}
+
+/* Main Content Area */
+.fi-main {
+    background-color: #f9fafb !important;
+}
+.fi-topbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+/* Button overrides for solid Red look */
+.fi-btn-primary {
+    background-color: #FF3B3B !important;
+    color: white !important;
+    border-color: #FF3B3B !important;
+}
+.fi-btn-primary:hover {
+    background-color: #E63535 !important;
+}
+
+/* Table aesthetic tweaks */
+.fi-ta-table {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 0.5rem !important;
+    overflow: hidden !important;
+    border: none !important;
+}
+
+/* =========================================
+   RED SQUARE ACTION BUTTONS
+   Edit / View / Delete icon buttons
+   ========================================= */
+
+/* All icon-only action buttons in table rows */
+.fi-ta-actions .fi-icon-btn,
+[data-action-group] .fi-icon-btn,
+.fi-ta-record-action .fi-icon-btn,
+.fi-ac-action .fi-icon-btn {
+    background-color: #E60026 !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+    transition: background-color 0.15s ease, transform 0.1s ease !important;
+    box-shadow: 0 2px 4px rgba(230, 0, 38, 0.3) !important;
+}
+
+.fi-ta-actions .fi-icon-btn:hover,
+[data-action-group] .fi-icon-btn:hover,
+.fi-ta-record-action .fi-icon-btn:hover,
+.fi-ac-action .fi-icon-btn:hover {
+    background-color: #c00020 !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 8px rgba(230, 0, 38, 0.4) !important;
+}
+
+/* Make icons white inside action buttons */
+.fi-ta-actions .fi-icon-btn svg,
+.fi-ta-actions .fi-icon-btn .fi-icon,
+[data-action-group] .fi-icon-btn svg,
+[data-action-group] .fi-icon-btn .fi-icon {
+    color: #ffffff !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+/* Delete button — slightly different red shade to distinguish */
+.fi-ac-danger.fi-icon-btn,
+[data-action="delete"].fi-icon-btn {
+    background-color: #b91c1c !important;
+}
+
+.fi-ac-danger.fi-icon-btn:hover,
+[data-action="delete"].fi-icon-btn:hover {
+    background-color: #991b1b !important;
+}
+
+/* Action group container spacing */
+.fi-ta-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+.fi-ta-actions .fi-icon-btn {
+    margin-left: 8px !important;
+}
+
+.fi-ta-actions .fi-icon-btn:first-child {
+    margin-left: 0 !important;
+}
+

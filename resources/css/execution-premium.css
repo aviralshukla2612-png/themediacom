@@ -1,0 +1,186 @@
+/* Premium Execution Styles & Media Motion Design */
+
+/* Global Dark Mode Enforcements */
+body {
+  background-color: var(--bg-dark) !important;
+  color: white !important;
+}
+
+.section-title {
+  color: white !important;
+}
+
+.section-subtitle {
+  color: #D1D5DB !important;
+}
+
+/* Cinematic Video Hero */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.execution-hero {
+  text-align: center !important;
+  max-width: 1000px;
+}
+
+.execution-btn {
+  padding: 1.2rem 3rem !important;
+  font-size: 1.1rem !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: var(--accent-red) !important;
+  border-radius: 0 !important;
+  font-weight: 700;
+  color: white !important;
+  border: none !important;
+}
+
+.execution-btn-outline {
+  padding: 1.2rem 3rem !important;
+  font-size: 1.1rem !important;
+  color: white !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.execution-btn-outline:hover {
+  background: white !important;
+  color: var(--bg-dark) !important;
+}
+
+/* Infinite Marquee */
+.marquee-section {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+.gsap-marquee {
+  display: flex;
+  min-width: 200%;
+}
+
+/* Editorial Bento Grid */
+.bento-item:hover .bento-bg img, .bento-gallery-item:hover .img-cover {
+  transform: scale(1.05) !important;
+  filter: brightness(0.9) !important;
+}
+
+.bento-item:hover .bento-overlay, .bento-gallery-item:hover .bento-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 80%) !important;
+}
+
+.bento-item:hover .bento-desc {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+/* Trust Bar overrides for dark mode */
+.trust-bar {
+  background-color: var(--bg-dark) !important;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.trust-bar .client-logo {
+  color: white !important;
+  opacity: 0.3 !important;
+}
+
+.trust-bar .client-logo:hover {
+  opacity: 1 !important;
+}
+
+/* Stats Cards Dark */
+.stat-card {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+@media (max-width: 992px) {
+  .bento-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .bento-item {
+    grid-column: span 1 !important;
+    min-height: 350px !important;
+  }
+  .bento-item .bento-content {
+    width: 100% !important;
+    padding: 2rem !important;
+  }
+  .bento-item .bento-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 80%) !important;
+  }
+  .bento-desc {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Gallery Responsive Grid */
+.bento-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 300px;
+    gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .bento-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .bento-gallery-item[style*="grid-column: span 2"] {
+        grid-column: span 2 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .bento-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+        gap: 0.5rem;
+    }
+    .bento-gallery-item {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        min-height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .bento-gallery-grid {
+        grid-auto-rows: 150px;
+    }
+    .bento-gallery-item h3 {
+        font-size: 1.2rem !important;
+    }
+    .bento-gallery-item h4 {
+        font-size: 0.9rem !important;
+    }
+    .bento-gallery-item > div[style*="padding:"] {
+        padding: 0.8rem !important;
+    }
+    
+    /* Fix Gallery Filter Buttons */
+    .gallery-filters {
+        gap: 0.5rem !important;
+    }
+    .gallery-filters .btn {
+        width: calc(50% - 0.5rem) !important;
+        padding: 0.5rem !important;
+        font-size: 0.85rem !important;
+    }
+}
