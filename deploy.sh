@@ -35,7 +35,8 @@ rsync -a public/ ../public_html/laravel/public/ --exclude=.htaccess --exclude=in
 
 # 7. Physically copy storage/app/public to the web folder (bypasses cPanel symlink restrictions entirely)
 echo "🔗 Copying storage files directly to public_html..."
-rm -f ../public_html/laravel/public/storage
+# Remove symlink if it exists (ignore error if it is a directory)
+rm -f ../public_html/laravel/public/storage 2>/dev/null || true
 mkdir -p ../public_html/laravel/public/storage
 rsync -a storage/app/public/ ../public_html/laravel/public/storage/
 
