@@ -79,68 +79,27 @@ class ClientLogoResource extends Resource
                             : '/storage/' . $record->image;
                         return '<img src="' . $url . '" style="height: 40px; object-fit: contain;">';
                     })
-                    ->visibleFrom('md'),
+                    ,
                 TextColumn::make('name')
                     ->label('Client Name')
                     ->searchable()
                     ->sortable()
-                    ->visibleFrom('md'),
+                    ,
                 TextColumn::make('sort_order')
                     ->label('Sort Order')
                     ->sortable()
-                    ->visibleFrom('md'),
+                    ,
                 IconColumn::make('status')
                     ->label('Active')
                     ->boolean()
                     ->sortable()
-                    ->visibleFrom('md'),
+                    ,
                 TextColumn::make('updated_at')
                     ->label('Updated')
                     ->dateTime('d M Y')
                     ->sortable()
-                    ->visibleFrom('md'),
+                    ,
 
-                // MOBILE CARD
-                \Filament\Tables\Columns\Layout\Stack::make([
-                    TextColumn::make('name_mobile')
-                        ->state(fn($record) => $record->name)
-                        ->weight('bold')
-                        ->size('lg'),
-                        
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_logo')->state(fn() => 'LOGO')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_logo')
-                            ->state(fn($record) => $record->image)
-                            ->html()
-                            ->getStateUsing(function ($record) {
-                                $url = \Illuminate\Support\Str::startsWith($record->image, 'client') 
-                                    ? '/' . $record->image 
-                                    : '/storage/' . $record->image;
-                                return '<img src="' . $url . '" style="height: 30px; object-fit: contain;">';
-                            })
-                            ->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_sort')->state(fn() => 'SORT ORDER')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_sort')->state(fn($record) => $record->sort_order)->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_status')->state(fn() => 'STATUS')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_status')
-                            ->state(fn($record) => $record->status)
-                            ->badge()
-                            ->color(fn ($state) => $state ? 'success' : 'danger')
-                            ->formatStateUsing(fn ($state) => $state ? 'Active' : 'Inactive')
-                            ->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_date')->state(fn() => 'UPDATED')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_date')->state(fn($record) => $record->updated_at)->dateTime('d M Y')->alignEnd(),
-                    ]),
-                ])->hiddenFrom('md')->space(3),
             ])
             ->defaultSort('sort_order', 'asc')
             ->actions([

@@ -68,37 +68,15 @@ class ContactSettingResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('email')->label('Email')->visibleFrom('md'),
-                TextColumn::make('phone')->label('Phone')->visibleFrom('md'),
-                TextColumn::make('address')->label('Address')->limit(50)->visibleFrom('md'),
+                TextColumn::make('email')->label('Email'),
+                TextColumn::make('phone')->label('Phone'),
+                TextColumn::make('address')->label('Address')->limit(50),
                 TextColumn::make('updated_at')
                     ->label('Last Updated')
                     ->dateTime('d M Y, H:i')
                     ->sortable()
-                    ->visibleFrom('md'),
+                    ,
                     
-                // MOBILE CARD
-                \Filament\Tables\Columns\Layout\Stack::make([
-                    TextColumn::make('email_mobile')
-                        ->state(fn($record) => $record->email)
-                        ->weight('bold')
-                        ->size('lg'),
-                        
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_phone')->state(fn() => 'PHONE')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_phone')->state(fn($record) => $record->phone)->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_address')->state(fn() => 'ADDRESS')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_address')->state(fn($record) => $record->address)->limit(50)->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_date')->state(fn() => 'LAST UPDATED')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_date')->state(fn($record) => $record->updated_at)->dateTime('d M Y, H:i')->alignEnd(),
-                    ]),
-                ])->hiddenFrom('md')->space(3),
             ])
             ->recordActions([
                 EditAction::make()->iconButton()->tooltip('Edit'),

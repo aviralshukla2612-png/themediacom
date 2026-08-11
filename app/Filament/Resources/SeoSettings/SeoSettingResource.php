@@ -67,31 +67,14 @@ class SeoSettingResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('seo_title')->label('SEO Title')->limit(60)->visibleFrom('md'),
-                TextColumn::make('seo_description')->label('Meta Description')->limit(80)->visibleFrom('md'),
+                TextColumn::make('seo_title')->label('SEO Title')->limit(60),
+                TextColumn::make('seo_description')->label('Meta Description')->limit(80),
                 TextColumn::make('updated_at')
                     ->label('Last Updated')
                     ->dateTime('d M Y, H:i')
                     ->sortable()
-                    ->visibleFrom('md'),
+                    ,
                     
-                // MOBILE CARD
-                \Filament\Tables\Columns\Layout\Stack::make([
-                    TextColumn::make('title_mobile')
-                        ->state(fn($record) => $record->seo_title)
-                        ->weight('bold')
-                        ->size('lg'),
-                        
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_desc')->state(fn() => 'DESCRIPTION')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_desc')->state(fn($record) => $record->seo_description)->limit(80)->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_date')->state(fn() => 'UPDATED')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_date')->state(fn($record) => $record->updated_at)->dateTime('d M Y, H:i')->alignEnd(),
-                    ]),
-                ])->hiddenFrom('md')->space(3),
             ])
             ->recordActions([
                 EditAction::make()->iconButton()->tooltip('Edit'),

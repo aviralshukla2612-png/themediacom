@@ -89,11 +89,11 @@ class UserResource extends Resource
             ->columns([
                 TextColumn::make('name')
                     ->searchable()
-                    ->visibleFrom('md'),
+                    ,
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable()
-                    ->visibleFrom('md'),
+                    ,
                 TextColumn::make('role')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -102,7 +102,7 @@ class UserResource extends Resource
                         'viewer' => 'success',
                         default => 'gray',
                     })
-                    ->visibleFrom('md'),
+                    ,
                 TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -110,56 +110,12 @@ class UserResource extends Resource
                         'inactive' => 'danger',
                         default => 'gray',
                     })
-                    ->visibleFrom('md'),
+                    ,
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
-                    ->visibleFrom('md'),
+                    ,
 
-                // MOBILE CARD (Label-Value Pairs)
-                \Filament\Tables\Columns\Layout\Stack::make([
-                    TextColumn::make('name_mobile')
-                        ->state(fn($record) => $record->name)
-                        ->weight('bold')
-                        ->size('lg'),
-                        
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_email')->state(fn() => 'EMAIL')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_email')->state(fn($record) => $record->email)->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_role')->state(fn() => 'ROLE')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_role')
-                            ->state(fn($record) => $record->role)
-                            ->badge()
-                            ->color(fn (string $state): string => match ($state) {
-                                'admin' => 'danger',
-                                'editor' => 'warning',
-                                'viewer' => 'success',
-                                default => 'gray',
-                            })
-                            ->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_status')->state(fn() => 'STATUS')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_status')
-                            ->state(fn($record) => $record->status)
-                            ->badge()
-                            ->color(fn (string $state): string => match ($state) {
-                                'active' => 'success',
-                                'inactive' => 'danger',
-                                default => 'gray',
-                            })
-                            ->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_date')->state(fn() => 'CREATED AT')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_date')->state(fn($record) => $record->created_at)->dateTime('d M Y')->alignEnd(),
-                    ]),
-                ])->hiddenFrom('md')->space(3),
             ])
             ->filters([
                 //

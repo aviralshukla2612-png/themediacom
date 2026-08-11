@@ -90,48 +90,22 @@ class CorporateContentResource extends Resource
                     ->label('Page Title')
                     ->searchable()
                     ->weight('bold')
-                    ->visibleFrom('md'),
+                    ,
                 ImageColumn::make('hero_bg')
                     ->label('Hero BG')
                     ->disk('public')
                     ->height(50)->width(80)
-                    ->visibleFrom('md'),
+                    ,
                 TextColumn::make('page_subtitle')
                     ->label('Subtitle')
                     ->limit(60)
-                    ->visibleFrom('md'),
+                    ,
                 TextColumn::make('updated_at')
                     ->label('Updated At')
                     ->dateTime('d M Y')
                     ->sortable()
-                    ->visibleFrom('md'),
+                    ,
 
-                // MOBILE CARD
-                \Filament\Tables\Columns\Layout\Stack::make([
-                    TextColumn::make('title_mobile')
-                        ->state(fn($record) => $record->page_title)
-                        ->weight('bold')
-                        ->size('lg'),
-                        
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_bg')->state(fn() => 'HERO BG')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        ImageColumn::make('val_bg')
-                            ->state(fn($record) => $record->hero_bg)
-                            ->disk('public')
-                            ->height(40)->width(60)
-                            ->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_sub')->state(fn() => 'SUBTITLE')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_sub')->state(fn($record) => $record->page_subtitle)->limit(60)->alignEnd(),
-                    ]),
-                    
-                    \Filament\Tables\Columns\Layout\Split::make([
-                        TextColumn::make('lbl_date')->state(fn() => 'UPDATED')->weight('bold')->color('gray')->grow(false)->size('sm'),
-                        TextColumn::make('val_date')->state(fn($record) => $record->updated_at)->dateTime('d M Y')->alignEnd(),
-                    ]),
-                ])->hiddenFrom('md')->space(3),
             ])
             ->recordActions([
                 EditAction::make()->iconButton()->tooltip('Edit'),
