@@ -71,13 +71,9 @@ class PageController extends Controller
             $galleries = Gallery::orderBy('sort_order', 'asc')->get();
             if ($galleries->isNotEmpty()) {
                 foreach ($galleries as $g) {
-                    $imagePath = \Illuminate\Support\Str::startsWith($g->image, ['http://', 'https://']) 
-                        ? $g->image 
-                        : 'storage/' . $g->image;
-                        
                     $gallery_items[] = [
                         'category' => $g->category,
-                        'path'     => $imagePath,
+                        'path'     => $g->image,
                         'title'    => ucwords(str_replace(['-', '_'], ' ', pathinfo($g->image, PATHINFO_FILENAME))),
                         'is_video' => strtolower(pathinfo($g->image, PATHINFO_EXTENSION)) === 'mp4'
                     ];
