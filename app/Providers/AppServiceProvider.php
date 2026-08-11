@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
                     'contact_phone'   => $contact?->phone        ?? '+91 88664 46225',
                     'contact_address' => $contact?->address      ?? 'Ahmedabad',
                     'maps_url'        => $contact?->maps_url     ?? 'https://maps.google.com/?q=Ahmedabad',
+                    'footer_text'     => $contact?->footer_text  ?? null,
                 ];
             });
             $view->with('global_seo', $settings);

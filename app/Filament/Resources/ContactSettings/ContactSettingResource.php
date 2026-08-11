@@ -47,10 +47,14 @@ class ContactSettingResource extends Resource
                             ->directory('site')
                             ->nullable(),
                         FileUpload::make('favicon_image')
-                            ->label('Site Favicon')
-                            ->image()
-                            ->directory('site')
-                            ->nullable(),
+                            ->directory('settings')
+                            ->imagePreviewHeight('100')
+                            ->helperText('Shown on browser tabs. Recommended: 32x32px or 64x64px square image.'),
+                        \Filament\Forms\Components\Textarea::make('footer_text')
+                            ->label('Global Footer Text')
+                            ->rows(3)
+                            ->columnSpanFull()
+                            ->helperText('Short description shown in the footer of the website.'),
                     ]),
                     Grid::make(2)->schema([
                         TextInput::make('email')

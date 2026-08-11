@@ -141,7 +141,7 @@
                         style="display: inline-block; margin-bottom: 1.5rem; margin-left: -1.5rem;"><img
                             src="{{ $global_seo['logo_image'] ?? asset('mediaconlogo2.png') }}" alt="The Media Com"
                             style="width: 100%; max-width: 320px; height: auto;"></a>
-                    <p>{{ $footer_text ?? 'The Media Com is a leading brand activation and event execution company dedicated to creating impactful on-ground marketing experiences. We specialize in RWA activations, BTL campaigns, mall promotions, corporate events, product sampling, and customer engagement programs that help brands connect with their audience in meaningful ways.' }}
+                    <p>{{ $global_seo['footer_text'] ?? ($footer_text ?? 'The Media Com is a leading brand activation and event execution company dedicated to creating impactful on-ground marketing experiences. We specialize in RWA activations, BTL campaigns, mall promotions, corporate events, product sampling, and customer engagement programs that help brands connect with their audience in meaningful ways.') }}
                     </p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/company/themediacom" class="social-link"><i

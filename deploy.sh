@@ -28,6 +28,10 @@ $PHP_BIN artisan optimize:clear
 echo "🗄️ Running database migrations..."
 $PHP_BIN artisan migrate --force
 
+# Create storage symlink if it doesn't exist
+echo "🔗 Creating storage symlink..."
+$PHP_BIN artisan storage:link || true
+
 # 6. Sync public folder to your public_html folder
 # IMPORTANT: We exclude .htaccess and index.php so we don't overwrite your custom server settings!
 echo "📂 Syncing public files to public_html/laravel/public..."
