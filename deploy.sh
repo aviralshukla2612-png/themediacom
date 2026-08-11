@@ -28,14 +28,15 @@ $PHP_BIN artisan optimize:clear
 echo "🗄️ Running database migrations..."
 $PHP_BIN artisan migrate --force
 
-# Create storage symlink if it doesn't exist
-echo "🔗 Creating storage symlink..."
-$PHP_BIN artisan storage:link || true
-
 # 6. Sync public folder to your public_html folder
 # IMPORTANT: We exclude .htaccess and index.php so we don't overwrite your custom server settings!
 echo "📂 Syncing public files to public_html/laravel/public..."
-rsync -a public/ ../public_html/laravel/public/ --exclude=.htaccess --exclude=index.php
+rsync -a public/ ../public_html/laravel/public/ --exclude=.htaccess --exclude=index.php --exclude=storage
+
+# 7. Create ABSOLUTE storage symlink in public_html directly (fixes broken images on cPanel)
+echo "🔗 Fixing storage symlink..."
+rm -f ../public_html/laravel/public/storage
+ln -s "$(pwd)/storage/app/public" ../public_html/laravel/public/storage
 
 # 7. Turn off maintenance mode
 echo "✅ Exiting maintenance mode..."

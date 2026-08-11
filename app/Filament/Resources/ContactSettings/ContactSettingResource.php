@@ -40,22 +40,11 @@ class ContactSettingResource extends Resource
                 ->description('This information is displayed on the Contact page and footer.')
                 ->icon('heroicon-o-phone')
                 ->schema([
-                    Grid::make(2)->schema([
-                        FileUpload::make('logo_image')
-                            ->label('Site Logo')
-                            ->image()
-                            ->directory('site')
-                            ->nullable(),
-                        FileUpload::make('favicon_image')
-                            ->directory('settings')
-                            ->imagePreviewHeight('100')
-                            ->helperText('Shown on browser tabs. Recommended: 32x32px or 64x64px square image.'),
                         \Filament\Forms\Components\Textarea::make('footer_text')
                             ->label('Global Footer Text')
                             ->rows(3)
                             ->columnSpanFull()
                             ->helperText('Short description shown in the footer of the website.'),
-                    ]),
                     Grid::make(2)->schema([
                         TextInput::make('email')
                             ->label('Email Address')
