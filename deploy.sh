@@ -23,8 +23,6 @@ $PHP_BIN $COMPOSER_BIN install --no-interaction --prefer-dist --optimize-autoloa
 # 4. Clear and rebuild Laravel caches
 echo "🧹 Clearing caches..."
 $PHP_BIN artisan optimize:clear
-$PHP_BIN artisan config:cache
-$PHP_BIN artisan route:cache
 
 # 5. Run database migrations safely
 echo "🗄️ Running database migrations..."
