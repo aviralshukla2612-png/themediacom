@@ -25,7 +25,6 @@ echo "🧹 Clearing caches..."
 $PHP_BIN artisan optimize:clear
 $PHP_BIN artisan config:cache
 $PHP_BIN artisan route:cache
-$PHP_BIN artisan view:cache
 
 # 5. Run database migrations safely
 echo "🗄️ Running database migrations..."
