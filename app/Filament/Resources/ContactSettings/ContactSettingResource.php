@@ -13,6 +13,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
@@ -39,6 +40,18 @@ class ContactSettingResource extends Resource
                 ->description('This information is displayed on the Contact page and footer.')
                 ->icon('heroicon-o-phone')
                 ->schema([
+                    Grid::make(2)->schema([
+                        FileUpload::make('logo_image')
+                            ->label('Site Logo')
+                            ->image()
+                            ->directory('site')
+                            ->nullable(),
+                        FileUpload::make('favicon_image')
+                            ->label('Site Favicon')
+                            ->image()
+                            ->directory('site')
+                            ->nullable(),
+                    ]),
                     Grid::make(2)->schema([
                         TextInput::make('email')
                             ->label('Email Address')

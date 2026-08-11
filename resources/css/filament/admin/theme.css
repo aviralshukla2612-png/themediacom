@@ -135,8 +135,9 @@
    FORM WIDTH & LAYOUT IMPROVEMENTS
    ========================================= */
 
-/* Center and constrain width of all Edit and Create forms */
-main .fi-form {
+/* Center and constrain width of all Edit and Create forms ONLY (do not affect tables) */
+.fi-resource-create-record-page main .fi-form,
+.fi-resource-edit-record-page main .fi-form {
     max-width: 850px !important;
     margin: 0 auto !important;
 }
@@ -158,7 +159,32 @@ main .fi-form {
     padding-left: 0 !important;
     font-weight: 500 !important;
 }
+/* Hide scrollbars and resize handles on disabled textareas */
+.fi-modal-window textarea:disabled {
+    resize: none !important;
+    overflow: hidden !important;
+}
 .fi-modal-window .fi-fo-field-wrp-label {
     color: #9ca3af !important;
     font-size: 0.85rem !important;
+}
+
+/* =========================================
+   PREMIUM SAVE NOTIFICATION POP-UPS
+   ========================================= */
+.fi-no-notification {
+    background-color: #111827 !important;
+    border: 1px solid #E60026 !important;
+    box-shadow: 0 10px 15px -3px rgba(230, 0, 38, 0.2), 0 4px 6px -2px rgba(230, 0, 38, 0.1) !important;
+    border-radius: 8px !important;
+}
+.fi-no-notification-title {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+.fi-no-notification-body {
+    color: #e5e7eb !important;
+}
+.fi-no-notification-icon {
+    color: #E60026 !important;
 }
