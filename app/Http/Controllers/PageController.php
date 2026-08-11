@@ -87,35 +87,34 @@ class PageController extends Controller
             // DB might be down or not migrated
         }
 
-        // Fallback to filesystem if DB is empty
-        if (empty($gallery_items)) {
-            $categories = [
-                'rwa'       => 'new_gallary/RWA',
-                'btl'       => 'new_gallary/BTL Activity',
-                'mall'      => 'new_gallary/Mall Promotions',
-                'corporate' => 'new_gallary/Corporate Events'
-            ];
+        // Also load from filesystem folders and merge them with DB items
+        $categories = [
+            'rwa'       => 'new_gallary/RWA',
+            'btl'       => 'new_gallary/BTL Activity',
+            'mall'      => 'new_gallary/Mall Promotions',
+            'corporate' => 'new_gallary/Corporate Events'
+        ];
 
-            foreach ($categories as $cat_key => $dir_path) {
-                $full_path = public_path($dir_path);
-                if (File::isDirectory($full_path)) {
-                    $files = File::files($full_path);
-                    foreach ($files as $file) {
-                        $ext = strtolower($file->getExtension());
-                        if (in_array($ext, ['jpg', 'jpeg', 'png', 'mp4'])) {
-                            $name_without_ext = $file->getFilenameWithoutExtension();
-                            $clean_title = preg_replace('/\(\d+\)/', '', $name_without_ext);
-                            $clean_title = str_replace(['-', '_'], ' ', $clean_title);
-                            $clean_title = ucwords(trim($clean_title));
-                            $clean_title = preg_replace('/\s+/', ' ', $clean_title);
+        foreach ($categories as $cat_key => $dir_path) {
+            $full_path = public_path($dir_path);
+            if (File::isDirectory($full_path)) {
+                $files = File::files($full_path);
+                foreach ($files as $file) {
+                    $ext = strtolower($file->getExtension());
+                    if (in_array($ext, ['jpg', 'jpeg', 'png', 'mp4'])) {
+                        $name_without_ext = $file->getFilenameWithoutExtension();
+                        $clean_title = preg_replace('/\(\d+\)/', '', $name_without_ext);
+                        $clean_title = str_replace(['-', '_'], ' ', $clean_title);
+                        $clean_title = ucwords(trim($clean_title));
+                        $clean_title = preg_replace('/\s+/', ' ', $clean_title);
 
-                            if (empty($clean_title) || strlen($clean_title) < 2) {
-                                $clean_title = ucwords($cat_key) . ' Campaign';
-                            }
+                        if (empty($clean_title) || strlen($clean_title) < 2) {
+                            $clean_title = ucwords($cat_key) . ' Campaign';
+                        }
 
-                            $gallery_items[] = [
-                                'category' => $cat_key,
-                                'path'     => $dir_path . '/' . $file->getFilename(),
+                        $gallery_items[] = [
+                            'category' => $cat_key,
+                            'path'     => $dir_path . '/' . $file->getFilename(),
                                 'title'    => $clean_title,
                                 'is_video' => $ext === 'mp4'
                             ];
