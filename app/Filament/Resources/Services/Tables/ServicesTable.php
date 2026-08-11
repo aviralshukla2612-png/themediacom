@@ -27,16 +27,19 @@ class ServicesTable
                 TextColumn::make('icon')
                     ->label('Icon')
                     ->searchable()
+                    ->visibleFrom('md')
                     ,
                 TextColumn::make('description')
                     ->label('Description')
-                    ->limit(60)->wrap()
+                    ->limit(60)
                     ->searchable()
+                    ->visibleFrom('md')
                     ,
                 TextColumn::make('updated_at')
                     ->label('Last Updated')
                     ->dateTime()
                     ->color('gray')
+                    ->visibleFrom('md')
                     ,
                     
                 IconColumn::make('status')

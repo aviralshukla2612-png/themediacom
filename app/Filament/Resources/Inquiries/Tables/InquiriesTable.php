@@ -30,7 +30,8 @@ class InquiriesTable
                 TextColumn::make('service_type')
                     ->label('Service / Subject')
                     ->searchable()
-                    ->limit(40)->wrap()
+                    ->limit(40)
+                    ->visibleFrom('md')
                     ,
                 TextColumn::make('status')
                     ->badge()
@@ -47,6 +48,7 @@ class InquiriesTable
                     ->label('Date')
                     ->dateTime('d M Y')
                     ->sortable()
+                    ->visibleFrom('md')
                     ,
 
             ])

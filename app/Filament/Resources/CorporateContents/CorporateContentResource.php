@@ -98,12 +98,14 @@ class CorporateContentResource extends Resource
                     ,
                 TextColumn::make('page_subtitle')
                     ->label('Subtitle')
-                    ->limit(60)->wrap()
+                    ->limit(60)
+                    ->visibleFrom('md')
                     ,
                 TextColumn::make('updated_at')
                     ->label('Updated At')
                     ->dateTime('d M Y')
                     ->sortable()
+                    ->visibleFrom('md')
                     ,
 
             ])

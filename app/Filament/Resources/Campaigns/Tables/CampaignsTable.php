@@ -45,6 +45,7 @@ class CampaignsTable
                     ->label('Featured')
                     ->boolean()
                     ->sortable()
+                    ->visibleFrom('md')
                     ,
                 TextColumn::make('status')
                     ->badge()
@@ -53,11 +54,13 @@ class CampaignsTable
                         'inactive' => 'danger',
                         default => 'gray',
                     })
+                    ->visibleFrom('md')
                     ,
                 TextColumn::make('created_at')
                     ->label('Date')
                     ->dateTime('d M Y')
                     ->sortable()
+                    ->visibleFrom('md')
                     ,
 
             ])

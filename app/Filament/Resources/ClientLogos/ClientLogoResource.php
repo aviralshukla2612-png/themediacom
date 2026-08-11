@@ -88,16 +88,19 @@ class ClientLogoResource extends Resource
                 TextColumn::make('sort_order')
                     ->label('Sort Order')
                     ->sortable()
+                    ->visibleFrom('md')
                     ,
                 IconColumn::make('status')
                     ->label('Active')
                     ->boolean()
                     ->sortable()
+                    ->visibleFrom('md')
                     ,
                 TextColumn::make('updated_at')
                     ->label('Updated')
                     ->dateTime('d M Y')
                     ->sortable()
+                    ->visibleFrom('md')
                     ,
 
             ])

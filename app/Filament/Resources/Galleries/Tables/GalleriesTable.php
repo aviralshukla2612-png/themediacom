@@ -38,6 +38,7 @@ class GalleriesTable
                     ->label('Updated')
                     ->dateTime('d M Y')
                     ->sortable()
+                    ->visibleFrom('md')
                     ,
 
             ])

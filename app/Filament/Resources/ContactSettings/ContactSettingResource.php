@@ -76,7 +76,7 @@ class ContactSettingResource extends Resource
             ->columns([
                 TextColumn::make('email')->label('Email'),
                 TextColumn::make('phone')->label('Phone'),
-                TextColumn::make('address')->label('Address')->limit(50)->wrap(),
+                TextColumn::make('address')->label('Address')->limit(50),
                 TextColumn::make('updated_at')
                     ->label('Last Updated')
                     ->dateTime('d M Y, H:i')
