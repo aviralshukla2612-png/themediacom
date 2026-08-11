@@ -81,5 +81,44 @@ class AdminPanelProvider extends PanelProvider
                 </div>
             ')
         );
+
+        \Filament\Support\Facades\FilamentView::registerRenderHook(
+            \Filament\View\PanelsRenderHook::HEAD_END,
+            fn (): string => '<style>
+                @media (max-width: 768px) {
+                    /* Change stacked column wrappers from flex-col to flex-row (Label Left, Content Right) */
+                    .fi-ta-table .fi-ta-col-wrp {
+                        flex-direction: row !important;
+                        justify-content: space-between !important;
+                        align-items: center !important;
+                        width: 100% !important;
+                        gap: 1rem !important;
+                        border-bottom: 1px solid rgba(255,255,255,0.05);
+                        padding-bottom: 0.5rem;
+                        margin-bottom: 0.5rem;
+                    }
+                    .fi-ta-table .fi-ta-col-wrp > span {
+                        font-weight: 600 !important;
+                        opacity: 0.8;
+                    }
+                    /* Action buttons right aligned */
+                    .fi-ta-table td:last-child > div,
+                    .fi-ta-table .fi-ta-actions {
+                        display: flex !important;
+                        justify-content: flex-end !important;
+                        width: 100% !important;
+                    }
+                    /* Styling the whole card container */
+                    .fi-ta-table tbody tr {
+                        background: rgba(255, 255, 255, 0.03) !important;
+                        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                        border-radius: 0.75rem !important;
+                        padding: 1rem !important;
+                        margin-bottom: 1rem !important;
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+                    }
+                }
+            </style>'
+        );
     }
 }
