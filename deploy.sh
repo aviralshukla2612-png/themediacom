@@ -33,10 +33,11 @@ $PHP_BIN artisan migrate --force
 echo "📂 Syncing public files to public_html/laravel/public..."
 rsync -a public/ ../public_html/laravel/public/ --exclude=.htaccess --exclude=index.php --exclude=storage
 
-# 7. Create ABSOLUTE storage symlink in public_html directly (fixes broken images on cPanel)
-echo "🔗 Fixing storage symlink..."
+# 7. Physically copy storage/app/public to the web folder (bypasses cPanel symlink restrictions entirely)
+echo "🔗 Copying storage files directly to public_html..."
 rm -f ../public_html/laravel/public/storage
-ln -s "$(pwd)/storage/app/public" ../public_html/laravel/public/storage
+mkdir -p ../public_html/laravel/public/storage
+rsync -a storage/app/public/ ../public_html/laravel/public/storage/
 
 # 7. Turn off maintenance mode
 echo "✅ Exiting maintenance mode..."

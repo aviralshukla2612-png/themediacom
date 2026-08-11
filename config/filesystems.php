@@ -40,7 +40,7 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => env('PUBLIC_STORAGE_PATH', storage_path('app/public')),
+            'root' => env('PUBLIC_STORAGE_PATH', file_exists(base_path('../public_html')) ? base_path('../public_html/laravel/public/storage') : storage_path('app/public')),
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
             'visibility' => 'public',
             'throw' => false,
