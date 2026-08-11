@@ -177,7 +177,9 @@
 
                         <div class="form-group">
                             <label class="form-label">Phone Number</label>
-                            <input type="tel" name="phone" class="form-control" placeholder="+91 98765 43210" required>
+                            <input type="tel" name="phone" class="form-control" placeholder="e.g. 9876543210" required
+                                   pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </div>
 
                         <div class="form-group">

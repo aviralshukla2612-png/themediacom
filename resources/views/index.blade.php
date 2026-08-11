@@ -154,9 +154,14 @@
 <!-- Infinite Marquee Section -->
 <div class="marquee-section"
     style="background: var(--accent-red); color: white; padding: 1.5rem 0; overflow: hidden; position: relative; z-index: 20; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+    <style>
+        .marquee-section .gsap-marquee .marquee-inner > * {
+            margin-right: 4rem;
+        }
+    </style>
     <div class="gsap-marquee">
         <div class="marquee-inner"
-            style="display: flex; gap: 4rem; white-space: nowrap; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">
+            style="display: flex; white-space: nowrap; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">
             <span>RWA ACTIVATIONS <span style="opacity: 0.5; margin: 0 1rem;">•</span></span>
             <span>BTL ACTIVITIES <span style="opacity: 0.5; margin: 0 1rem;">•</span></span>
             <span>MALL PROMOTIONS <span style="opacity: 0.5; margin: 0 1rem;">•</span></span>
@@ -405,13 +410,14 @@
     </div>
 
     <style>
-        .marquee-inner img {
+        .marquee-section .gsap-marquee .marquee-inner img {
             flex-shrink: 0 !important;
+            margin-right: 4rem;
         }
     </style>
     <div class="gsap-marquee" data-direction="ltr" style="background: #000000 !important;">
         <div class="marquee-inner"
-            style="display: flex; gap: 4rem; align-items: center; white-space: nowrap; background: #000000 !important; padding: 0.5rem 0;">
+            style="display: flex; align-items: center; white-space: nowrap; background: #000000 !important; padding: 0.5rem 0;">
             @if(isset($clients) && $clients->count() > 0)
                 @foreach($clients as $client)
                     <img src="{{ Str::startsWith($client->image, 'client logo') ? asset($client->image) : asset('storage/'.$client->image) }}" alt="{{ $client->name }}"
@@ -2428,7 +2434,9 @@
                 </div>
                 <div class="inquiry-form-group">
                     <label>Phone Number</label>
-                    <input type="tel" name="phone" placeholder="+91 98765 43210" required>
+                    <input type="tel" name="phone" placeholder="e.g. 9876543210" required
+                           pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 </div>
                 <div class="inquiry-form-group">
                     <label>Type of Inquiry</label>
