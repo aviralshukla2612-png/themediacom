@@ -404,6 +404,11 @@
         style="position: absolute; top: 0; bottom: 0; right: 0; width: 200px; background: linear-gradient(to left, #000000 20%, transparent 100%); z-index: 5; pointer-events: none;">
     </div>
 
+    <style>
+        .marquee-inner img {
+            flex-shrink: 0 !important;
+        }
+    </style>
     <div class="gsap-marquee" data-direction="ltr" style="background: #000000 !important;">
         <div class="marquee-inner"
             style="display: flex; gap: 4rem; align-items: center; white-space: nowrap; background: #000000 !important; padding: 0.5rem 0;">
