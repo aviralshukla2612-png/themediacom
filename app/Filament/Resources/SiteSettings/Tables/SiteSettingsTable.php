@@ -12,6 +12,7 @@ class SiteSettingsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->stackedOnMobile()
             ->columns([
                 \Filament\Tables\Columns\TextColumn::make('site_name')->label('Site Name'),
                 \Filament\Tables\Columns\ImageColumn::make('logo_image')->label('Logo'),
@@ -32,3 +33,4 @@ class SiteSettingsTable
             ]);
     }
 }
+

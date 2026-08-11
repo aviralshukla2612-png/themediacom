@@ -66,6 +66,7 @@ class SeoSettingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->stackedOnMobile()
             ->columns([
                 TextColumn::make('seo_title')->label('SEO Title')->limit(60),
                 TextColumn::make('seo_description')->label('Meta Description')->limit(80),
@@ -94,3 +95,4 @@ class SeoSettingResource extends Resource
         ];
     }
 }
+

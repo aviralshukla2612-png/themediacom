@@ -86,6 +86,7 @@ class UserResource extends Resource
     {
         return $table
             ->recordTitleAttribute('name')
+            ->stackedOnMobile()
             ->columns([
                 TextColumn::make('name')
                     ->searchable()
@@ -182,3 +183,4 @@ class UserResource extends Resource
         ];
     }
 }
+

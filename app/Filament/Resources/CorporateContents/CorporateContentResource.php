@@ -85,6 +85,7 @@ class CorporateContentResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->stackedOnMobile()
             ->columns([
                 TextColumn::make('page_title')
                     ->label('Page Title')
@@ -127,3 +128,4 @@ class CorporateContentResource extends Resource
         ];
     }
 }
+

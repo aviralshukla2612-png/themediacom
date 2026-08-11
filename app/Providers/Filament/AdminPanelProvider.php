@@ -77,43 +77,5 @@ class AdminPanelProvider extends PanelProvider
                 <div class="mb-4">
                     <x-filament::button color="gray" tag="a" href="javascript:history.back()" icon="heroicon-m-arrow-left" size="sm" outlined>
                         Back
-                    </x-filament::button>
-                </div>
-            ')
-        );
-        \Filament\Support\Facades\FilamentView::registerRenderHook(
-            \Filament\View\PanelsRenderHook::HEAD_END,
-            fn (): string => '<style>
-                @media (max-width: 768px) {
-                    .fi-ta-table thead { display: none !important; }
-                    .fi-ta-table tbody tr {
-                        display: flex !important;
-                        flex-wrap: wrap !important;
-                        align-items: center !important;
-                        justify-content: space-between !important;
-                        margin-bottom: 1rem;
-                        background: rgba(255, 255, 255, 0.03);
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                        border-radius: 0.75rem;
-                        padding: 1rem;
-                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-                    }
-                    .fi-ta-table tbody td {
-                        display: block !important;
-                        padding: 0.5rem !important;
-                        border: none !important;
-                    }
-                    /* Action buttons full width at bottom */
-                    .fi-ta-table tbody td:last-child {
-                        width: 100%;
-                        display: flex !important;
-                        justify-content: flex-end !important;
-                        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
-                        margin-top: 0.5rem;
-                        padding-top: 0.75rem !important;
-                    }
-                }
-            </style>'
-        );
     }
 }

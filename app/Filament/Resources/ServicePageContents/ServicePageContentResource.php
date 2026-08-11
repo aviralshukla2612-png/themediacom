@@ -60,6 +60,7 @@ class ServicePageContentResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->stackedOnMobile()
             ->columns([
                 TextColumn::make('btl_metric_reached')
                     ->label('People Reached'),
@@ -90,3 +91,4 @@ class ServicePageContentResource extends Resource
         ];
     }
 }
+

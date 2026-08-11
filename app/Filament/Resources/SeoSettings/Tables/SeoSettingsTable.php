@@ -12,6 +12,7 @@ class SeoSettingsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->stackedOnMobile()
             ->columns([
                 //
             ])
@@ -28,3 +29,4 @@ class SeoSettingsTable
             ]);
     }
 }
+

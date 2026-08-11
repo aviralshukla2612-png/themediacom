@@ -73,6 +73,7 @@ class ContactSettingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->stackedOnMobile()
             ->columns([
                 TextColumn::make('email')->label('Email'),
                 TextColumn::make('phone')->label('Phone'),
@@ -102,3 +103,4 @@ class ContactSettingResource extends Resource
         ];
     }
 }
+

@@ -16,6 +16,7 @@ class GalleriesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->stackedOnMobile()
             ->columns([
                 TextColumn::make('image')
                     ->label('Preview')
@@ -63,3 +64,4 @@ class GalleriesTable
             ]);
     }
 }
+

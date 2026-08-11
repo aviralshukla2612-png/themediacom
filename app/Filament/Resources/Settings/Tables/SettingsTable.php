@@ -13,6 +13,7 @@ class SettingsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->stackedOnMobile()
             ->columns([
                 TextColumn::make('setting_key')
                     ->searchable(),
@@ -31,3 +32,4 @@ class SettingsTable
             ]);
     }
 }
+

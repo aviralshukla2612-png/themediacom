@@ -15,6 +15,7 @@ class HomeContentsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->stackedOnMobile()
             ->columns([
                 TextColumn::make('heading')
                     ->label('Hero Heading')
@@ -48,3 +49,4 @@ class HomeContentsTable
             ]);
     }
 }
+

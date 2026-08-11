@@ -69,6 +69,7 @@ class ClientLogoResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->stackedOnMobile()
             ->columns([
                 TextColumn::make('image')
                     ->label('Logo')
@@ -131,3 +132,4 @@ class ClientLogoResource extends Resource
         ];
     }
 }
+
