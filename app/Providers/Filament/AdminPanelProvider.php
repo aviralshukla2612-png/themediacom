@@ -87,7 +87,8 @@ class AdminPanelProvider extends PanelProvider
             fn (): string => '<style>
                 @media (max-width: 768px) {
                     /* Change stacked cell to flex-row (Label Left, Content Right) */
-                    .fi-ta-table .fi-ta-cell {
+                    /* Change stacked cell to flex-row (Label Left, Content Right) */
+                    .fi-ta-table .fi-ta-cell:not(.hidden) {
                         display: flex !important;
                         flex-direction: row !important;
                         justify-content: space-between !important;
@@ -96,6 +97,9 @@ class AdminPanelProvider extends PanelProvider
                         gap: 1rem !important;
                         border-bottom: 1px solid rgba(255,255,255,0.05);
                         padding: 0.75rem 0 !important;
+                    }
+                    .fi-ta-table .fi-ta-cell.hidden {
+                        display: none !important;
                     }
                     .fi-ta-table .fi-ta-cell:last-child {
                         border-bottom: none !important;
@@ -109,7 +113,13 @@ class AdminPanelProvider extends PanelProvider
                         flex-grow: 1;
                         display: flex;
                         justify-content: flex-end;
-                        text-align: right;
+                        align-items: center;
+                    }
+                    .fi-ta-table .fi-ta-cell-content > * {
+                        text-align: right !important;
+                        display: flex;
+                        justify-content: flex-end;
+                        width: auto !important;
                     }
                     .fi-ta-table .fi-ta-cell-content img, .fi-ta-table .fi-ta-cell-content video {
                         margin-left: auto;
