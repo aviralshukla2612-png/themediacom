@@ -9,7 +9,7 @@
 
 /* Make entire panel deep dark */
 .fi-body, .fi-main, .fi-sidebar {
-    background-color: #09090b !important;
+    background-color: #111827 !important;
     color: #ffffff !important;
 }
 
@@ -61,7 +61,7 @@
     transition: all 0.2s ease !important;
 }
 .fi-btn-primary:hover {
-    background-color: #09090b !important; /* Dark background on hover */
+    background-color: #111827 !important; /* Dark background on hover */
     color: #E60026 !important; /* Red text on hover */
     border: 1px solid #E60026 !important; /* Red Border stays */
 }
@@ -71,7 +71,7 @@
 [data-action-group] .fi-icon-btn,
 .fi-ta-record-action .fi-icon-btn,
 .fi-ac-action .fi-icon-btn {
-    background-color: #09090b !important;
+    background-color: #111827 !important;
     color: #E60026 !important;
     border-radius: 6px !important;
     width: 32px !important;
