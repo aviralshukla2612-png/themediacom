@@ -74,9 +74,9 @@ class ClientLogoResource extends Resource
                     ->label('Logo')
                     ->html()
                     ->getStateUsing(function ($record) {
-                        $url = \Illuminate\Support\Str::startsWith($record->image, 'client') 
-                            ? '/' . $record->image 
-                            : '/storage/' . $record->image;
+                        $url = \Illuminate\Support\Str::startsWith($record->image, 'client logo') 
+                            ? asset($record->image) 
+                            : asset('storage/' . $record->image);
                         return '<img src="' . $url . '" style="height: 40px; object-fit: contain;">';
                     })
                     ,

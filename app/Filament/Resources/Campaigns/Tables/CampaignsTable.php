@@ -35,9 +35,9 @@ class CampaignsTable
                     ->html()
                     ->formatStateUsing(function ($record) {
                         if (!$record->image) return '<span style="color:#9ca3af;font-size:0.75rem;">No image</span>';
-                        $url = \Illuminate\Support\Str::startsWith($record->image, ['new_gallary', 'client']) 
-                            ? '/' . $record->image 
-                            : '/storage/' . $record->image;
+                        $url = \Illuminate\Support\Str::startsWith($record->image, ['new_gallary', 'client logo']) 
+                            ? asset($record->image) 
+                            : asset('storage/' . $record->image);
                         return '<img src="' . $url . '" onerror="this.style.display=\'none\'" style="width:80px;height:50px;object-fit:cover;border-radius:4px;" />';
                     })
                     ,
