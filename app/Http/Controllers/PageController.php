@@ -122,7 +122,6 @@ class PageController extends Controller
                     }
                 }
             }
-        }
 
         return view('gallery', compact('gallery_items'));
     }
