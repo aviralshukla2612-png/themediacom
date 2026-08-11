@@ -27,6 +27,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('portal')
             ->viteTheme('resources/css/filament/admin/theme.css')
+            ->defaultThemeMode(\Filament\Enums\ThemeMode::Dark)
+            ->darkMode(true, true) // Force dark mode, disable toggle
             ->login()
             ->colors([
                 'primary' => '#E60026',

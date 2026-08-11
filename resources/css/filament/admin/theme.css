@@ -4,89 +4,75 @@
 @source '../../../../resources/views/filament/**/*';
 
 /* =========================================
-   CUSTOM UI: DARK SIDEBAR + LIGHT CONTENT
+   CUSTOM UI: GLOBAL DARK THEME OVERRIDES
    ========================================= */
 
-/* Force Sidebar to be Dark */
-.fi-sidebar,
-.fi-sidebar-nav {
-    background-color: #0d1117 !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+/* Make entire panel deep dark */
+.fi-body, .fi-main, .fi-sidebar {
+    background-color: #09090b !important;
+    color: #ffffff !important;
 }
 
-/* Sidebar Header / Logo Area */
-.fi-sidebar-header {
-    background-color: #0d1117 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-}
-
-/* Group Labels */
-.fi-sidebar-group-label {
-    color: #6b7280 !important;
-}
-
-/* Inactive Sidebar Items */
-.fi-sidebar-item-button {
-    color: #9ca3af !important;
-}
-.fi-sidebar-item-button .fi-icon {
-    color: #6b7280 !important;
-}
-
-/* Hover Sidebar Items */
+/* Sidebar Hover - Red */
 .fi-sidebar-item-button:hover {
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    color: #e5e7eb !important;
+    background-color: rgba(230, 0, 38, 0.1) !important;
+    color: #E60026 !important;
+}
+.fi-sidebar-item-button:hover .fi-icon {
+    color: #E60026 !important;
 }
 
 /* Active Sidebar Items */
 .fi-sidebar-item-active > .fi-sidebar-item-button {
-    background-color: rgba(255, 59, 59, 0.1) !important;
+    background-color: rgba(230, 0, 38, 0.15) !important;
     color: #FF3B3B !important;
+    border-right: 3px solid #E60026 !important;
 }
 .fi-sidebar-item-active > .fi-sidebar-item-button .fi-icon {
     color: #FF3B3B !important;
 }
 
-/* Main Content Area */
-.fi-main {
-    background-color: #f9fafb !important;
-}
-.fi-topbar {
-    background-color: #ffffff !important;
-    border-bottom: 1px solid #e5e7eb !important;
-}
-
-/* Button overrides for solid Red look */
-.fi-btn-primary {
-    background-color: #FF3B3B !important;
-    color: white !important;
-    border-color: #FF3B3B !important;
-}
-.fi-btn-primary:hover {
-    background-color: #E63535 !important;
-}
-
-/* Table aesthetic tweaks */
+/* Table aesthetic tweaks for dark mode */
 .fi-ta-table {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5) !important;
     border-radius: 0.5rem !important;
     overflow: hidden !important;
-    border: none !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+/* Table Text Colors */
+.fi-ta-cell {
+    color: #e5e7eb !important;
+}
+.fi-ta-header-cell-label {
+    color: #ffffff !important;
+    font-weight: 700 !important;
 }
 
 /* =========================================
-   RED SQUARE ACTION BUTTONS
-   Edit / View / Delete icon buttons
+   BUTTON STYLES (Red Hover & Red Border)
    ========================================= */
 
-/* All icon-only action buttons in table rows */
+/* Primary Solid Buttons */
+.fi-btn-primary {
+    background-color: #E60026 !important;
+    color: white !important;
+    border: 1px solid #E60026 !important; /* Red Border */
+    transition: all 0.2s ease !important;
+}
+.fi-btn-primary:hover {
+    background-color: #09090b !important; /* Dark background on hover */
+    color: #E60026 !important; /* Red text on hover */
+    border: 1px solid #E60026 !important; /* Red Border stays */
+}
+
+/* Red Square Action Buttons (Edit/View/Delete) */
 .fi-ta-actions .fi-icon-btn,
 [data-action-group] .fi-icon-btn,
 .fi-ta-record-action .fi-icon-btn,
 .fi-ac-action .fi-icon-btn {
-    background-color: #E60026 !important;
-    color: #ffffff !important;
+    background-color: #09090b !important;
+    color: #E60026 !important;
     border-radius: 6px !important;
     width: 32px !important;
     height: 32px !important;
@@ -96,39 +82,40 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border: none !important;
-    transition: background-color 0.15s ease, transform 0.1s ease !important;
-    box-shadow: 0 2px 4px rgba(230, 0, 38, 0.3) !important;
+    border: 1px solid #E60026 !important; /* Red Border */
+    transition: all 0.2s ease !important;
 }
 
 .fi-ta-actions .fi-icon-btn:hover,
 [data-action-group] .fi-icon-btn:hover,
 .fi-ta-record-action .fi-icon-btn:hover,
 .fi-ac-action .fi-icon-btn:hover {
-    background-color: #c00020 !important;
+    background-color: #E60026 !important; /* Red Hover */
+    color: white !important; /* White Icon on Hover */
     transform: scale(1.05) !important;
-    box-shadow: 0 4px 8px rgba(230, 0, 38, 0.4) !important;
 }
 
-/* Make icons white inside action buttons */
+/* Icons inside action buttons */
 .fi-ta-actions .fi-icon-btn svg,
 .fi-ta-actions .fi-icon-btn .fi-icon,
 [data-action-group] .fi-icon-btn svg,
 [data-action-group] .fi-icon-btn .fi-icon {
-    color: #ffffff !important;
     width: 16px !important;
     height: 16px !important;
+    color: inherit !important; /* Inherits from button */
 }
 
-/* Delete button — slightly different red shade to distinguish */
+/* Delete button — slightly different shade */
 .fi-ac-danger.fi-icon-btn,
 [data-action="delete"].fi-icon-btn {
-    background-color: #b91c1c !important;
+    border-color: #b91c1c !important;
+    color: #b91c1c !important;
 }
 
 .fi-ac-danger.fi-icon-btn:hover,
 [data-action="delete"].fi-icon-btn:hover {
-    background-color: #991b1b !important;
+    background-color: #b91c1c !important;
+    color: white !important;
 }
 
 /* Action group container spacing */
@@ -137,12 +124,9 @@
     align-items: center !important;
     gap: 12px !important;
 }
-
 .fi-ta-actions .fi-icon-btn {
     margin-left: 8px !important;
 }
-
 .fi-ta-actions .fi-icon-btn:first-child {
     margin-left: 0 !important;
 }
-
