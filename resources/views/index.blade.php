@@ -2426,11 +2426,11 @@
                         @csrf
                 <div class="inquiry-form-group">
                     <label>Full Name</label>
-                    <input type="text" name="name" placeholder="Rahul Sharma" required>
+                    <input type="text" name="name" placeholder="Rahul Sharma" required oninput="this.value = this.value.replace(/[0-9]/g, '')">
                 </div>
                 <div class="inquiry-form-group">
                     <label>Company Name <span style="font-weight: normal; color: #94a3b8;">(Optional)</span></label>
-                    <input type="text" name="company" placeholder="e.g. Acme Corp">
+                    <input type="text" name="company" placeholder="e.g. Acme Corp" oninput="this.value = this.value.replace(/[0-9]/g, '')">
                 </div>
                 <div class="inquiry-form-group">
                     <label>Phone Number</label>

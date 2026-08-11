@@ -166,13 +166,13 @@
                         <input type="hidden" name="form_source" value="contact_page">
                         <div class="form-group">
                             <label class="form-label">Full Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Rahul Sharma" required>
+                            <input type="text" name="name" class="form-control" placeholder="Rahul Sharma" required oninput="this.value = this.value.replace(/[0-9]/g, '')">
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Company Name <span
                                     style="font-weight: normal; color: #94a3b8;">(Optional)</span></label>
-                            <input type="text" name="company" class="form-control" placeholder="e.g. Acme Corp">
+                            <input type="text" name="company" class="form-control" placeholder="e.g. Acme Corp" oninput="this.value = this.value.replace(/[0-9]/g, '')">
                         </div>
 
                         <div class="form-group">
