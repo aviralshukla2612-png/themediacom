@@ -17,7 +17,8 @@ git pull origin main
 # 3. Install/update composer dependencies (optimized for production)
 # We use the specific PHP 8.4 binary to run Composer so it doesn't fail!
 echo "📦 Installing composer dependencies..."
-$PHP_BIN /usr/bin/composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+COMPOSER_BIN=$(which composer)
+$PHP_BIN $COMPOSER_BIN install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 # 4. Clear and rebuild Laravel caches
 echo "🧹 Clearing caches..."
