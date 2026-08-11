@@ -130,3 +130,35 @@
 .fi-ta-actions .fi-icon-btn:first-child {
     margin-left: 0 !important;
 }
+
+/* =========================================
+   FORM WIDTH & LAYOUT IMPROVEMENTS
+   ========================================= */
+
+/* Center and constrain width of all Edit and Create forms */
+main .fi-form {
+    max-width: 850px !important;
+    margin: 0 auto !important;
+}
+
+/* Improve padding in modals */
+.fi-modal-window {
+    padding: 1.5rem !important;
+}
+
+/* Make disabled inputs in View Modals look like beautiful plain text */
+.fi-modal-window input:disabled,
+.fi-modal-window textarea:disabled,
+.fi-modal-window select:disabled,
+.fi-modal-window .fi-fo-toggle {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    padding-left: 0 !important;
+    font-weight: 500 !important;
+}
+.fi-modal-window .fi-fo-field-wrp-label {
+    color: #9ca3af !important;
+    font-size: 0.85rem !important;
+}

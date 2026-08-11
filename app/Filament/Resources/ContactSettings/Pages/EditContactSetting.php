@@ -13,7 +13,9 @@ class EditContactSetting extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            \Filament\Actions\CreateAction::make(),
             DeleteAction::make(),
         ];
     }
 }
+
