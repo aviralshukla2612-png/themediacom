@@ -37,9 +37,12 @@
                     <!-- Video Item -->
                     <div class="bento-gallery-item filter-item {{ $item['category'] }} gsap-fade-up"
                         style="grid-column: span 1; grid-row: span 1; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: opacity 0.4s; height: 100%;">
+                        @php
+                            $videoUrl = \Illuminate\Support\Str::startsWith($item['path'], ['new_gallary', 'client logo']) ? asset($item['path']) : asset('storage/' . $item['path']);
+                        @endphp
                         <video autoplay loop muted playsinline class="img-cover"
                             style="filter: brightness(0.7); width: 100%; height: 100%; object-fit: cover;">
-                            <source src="{{ asset($item['path']) }}" type="video/mp4">
+                            <source src="{{ $videoUrl }}" type="video/mp4">
                         </video>
                         <div class="bento-overlay"
                             style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); transition: 0.4s;">
@@ -50,7 +53,10 @@
                     <!-- Image Item -->
                     <div class="bento-gallery-item filter-item {{ $item['category'] }} gsap-fade-up"
                         style="grid-column: span 1; grid-row: span 1; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.4s, opacity 0.4s; height: 100%;">
-                        <img src="{{ asset($item['path']) }}"
+                        @php
+                            $imageUrl = \Illuminate\Support\Str::startsWith($item['path'], ['new_gallary', 'client logo']) ? asset($item['path']) : asset('storage/' . $item['path']);
+                        @endphp
+                        <img src="{{ $imageUrl }}"
                             alt="{{ $item['title'] }}" class="img-cover"
                             style="filter: brightness(0.8); transition: 0.5s; width: 100%; height: 100%; object-fit: cover;">
 
