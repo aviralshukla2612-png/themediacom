@@ -26,13 +26,15 @@ class AppServiceProvider extends ServiceProvider
             $settings = Cache::remember('global_seo_settings', 3600, function () {
                 $seo = \App\Models\SeoSetting::first();
                 $contact = \App\Models\ContactSetting::first();
+                $site = \App\Models\SiteSetting::first();
                 return [
                     'seo_title'       => $seo?->seo_title       ?? 'The Media Com | Brand Activation & BTL Agency',
                     'seo_description' => $seo?->seo_description ?? 'The Media Com is a leading Brand Activation and BTL Agency.',
                     'seo_image'       => $seo?->seo_image        ?? '',
                     
-                    'logo_image'      => $contact?->logo_image   ? asset('storage/' . $contact->logo_image) : asset('mediaconlogo_nav.png'),
-                    'favicon_image'   => $contact?->favicon_image ? asset('storage/' . $contact->favicon_image) : asset('mediaconlogo_nav.png'),
+                    'site_name'       => $site?->site_name       ?? 'The Media Com',
+                    'logo_image'      => $site?->logo_image      ? asset('storage/' . $site->logo_image) : asset('mediaconlogo_nav.png'),
+                    'favicon_image'   => $site?->favicon_image   ? asset('storage/' . $site->favicon_image) : asset('mediaconlogo_nav.png'),
                     
                     'contact_email'   => $contact?->email        ?? 'info@themediacom.com',
                     'contact_phone'   => $contact?->phone        ?? '+91 88664 46225',
