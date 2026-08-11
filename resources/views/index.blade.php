@@ -414,7 +414,7 @@
             style="display: flex; gap: 4rem; align-items: center; white-space: nowrap; background: #000000 !important; padding: 0.5rem 0;">
             @if(isset($clients) && $clients->count() > 0)
                 @foreach($clients as $client)
-                    <img src="{{ Str::startsWith($client->image, 'client') ? asset($client->image) : asset('storage/'.$client->image) }}" alt="{{ $client->name }}"
+                    <img src="{{ Str::startsWith($client->image, 'client logo') ? asset($client->image) : asset('storage/'.$client->image) }}" alt="{{ $client->name }}"
                         style="height: 75px; width: auto; object-fit: contain; background: #ffffff; padding: 10px 24px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.3s ease;" title="{{ $client->name }}">
                 @endforeach
             @endif
