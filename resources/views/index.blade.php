@@ -250,8 +250,12 @@
     }
 
     @media (max-width: 576px) {
+        .hero-redesign {
+            padding: 100px 0 40px;
+        }
         .collage-grid {
             grid-template-columns: 1fr;
+            grid-template-rows: auto;
         }
 
         .floating-stats {
@@ -2165,6 +2169,26 @@
 
         .timeline-dot {
             margin: 0;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .value-blocks-container {
+            padding-left: 1rem;
+        }
+        .value-block {
+            padding: 1.5rem;
+        }
+        .value-block-num {
+            font-size: 5rem;
+            bottom: -10px;
+            right: 0px;
+        }
+        .exec-desc-box {
+            padding: 1.5rem;
+        }
+        .exec-desc-box h4 {
+            font-size: 1.8rem;
         }
     }
 
