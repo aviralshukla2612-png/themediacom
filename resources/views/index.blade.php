@@ -417,12 +417,7 @@
                     <img src="{{ Str::startsWith($client->image, 'client') ? asset($client->image) : asset('storage/'.$client->image) }}" alt="{{ $client->name }}"
                         style="height: 75px; width: auto; object-fit: contain; background: #ffffff; padding: 10px 24px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.3s ease;" title="{{ $client->name }}">
                 @endforeach
-                <!-- Duplicate for seamless loop if needed by marquee -->
-                @foreach($clients as $client)
-                    <img src="{{ Str::startsWith($client->image, 'client') ? asset($client->image) : asset('storage/'.$client->image) }}" alt="{{ $client->name }}"
-                        style="height: 75px; width: auto; object-fit: contain; background: #ffffff; padding: 10px 24px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.3s ease;" title="{{ $client->name }}">
-                @endforeach
-            @else
+            @endif
                 <img src="{{ asset('client logo/1 MG.jpg') }}" alt="1 MG"
                     style="height: 75px; width: auto; object-fit: contain; background: #ffffff; padding: 10px 24px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.3s ease;">
                 <img src="{{ asset('client logo/Airtel Payment Bank (1).jpg') }}" alt="Airtel Payment Bank"
@@ -469,7 +464,6 @@
                     style="height: 75px; width: auto; object-fit: contain; background: #ffffff; padding: 10px 24px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.3s ease;">
                 <img src="{{ asset('client logo/Zomato.jpg') }}" alt="Zomato"
                     style="height: 75px; width: auto; object-fit: contain; background: #ffffff; padding: 10px 24px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.3s ease;">
-            @endif
         </div>
     </div>
 </div>
