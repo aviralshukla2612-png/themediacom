@@ -77,5 +77,9 @@ class AdminPanelProvider extends PanelProvider
                 <div class="mb-4">
                     <x-filament::button color="gray" tag="a" href="javascript:history.back()" icon="heroicon-m-arrow-left" size="sm" outlined>
                         Back
+                    </x-filament::button>
+                </div>
+            ')
+        );
     }
 }
