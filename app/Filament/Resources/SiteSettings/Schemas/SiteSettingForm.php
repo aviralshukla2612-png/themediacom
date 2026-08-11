@@ -18,11 +18,13 @@ class SiteSettingForm
                 \Filament\Forms\Components\FileUpload::make('logo_image')
                     ->label('Site Logo')
                     ->image()
+                    ->disk('public')
                     ->directory('site')
                     ->nullable(),
                 \Filament\Forms\Components\FileUpload::make('favicon_image')
                     ->label('Site Favicon')
                     ->image()
+                    ->disk('public')
                     ->directory('site')
                     ->imagePreviewHeight('100')
                     ->helperText('Shown on browser tabs. Recommended: 32x32px or 64x64px square image.')
