@@ -28,7 +28,7 @@ Homestead.json
 .phpunit.result.cache
 
 # Laravel build files
-/public/build
+
 /storage/pail
 
 # PHP tools

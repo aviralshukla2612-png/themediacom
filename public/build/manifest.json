@@ -1,0 +1,65 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-ChGrSKKY.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/cursor.css": {
+    "file": "assets/cursor-VfBSanrW.css",
+    "src": "resources/css/cursor.css",
+    "isEntry": true,
+    "name": "cursor",
+    "names": [
+      "cursor.css"
+    ]
+  },
+  "resources/css/execution-premium.css": {
+    "file": "assets/execution-premium-CoarWlzG.css",
+    "src": "resources/css/execution-premium.css",
+    "isEntry": true,
+    "name": "execution-premium",
+    "names": [
+      "execution-premium.css"
+    ]
+  },
+  "resources/css/filament/admin/theme.css": {
+    "file": "assets/theme-D3O1jR2x.css",
+    "src": "resources/css/filament/admin/theme.css",
+    "isEntry": true,
+    "name": "theme",
+    "names": [
+      "theme.css"
+    ]
+  },
+  "resources/css/style.css": {
+    "file": "assets/style-Be2Q8Rr2.css",
+    "src": "resources/css/style.css",
+    "isEntry": true,
+    "name": "style",
+    "names": [
+      "style.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DUr89oQr.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/main.js": {
+    "file": "assets/main-C6KMewNv.js",
+    "name": "main",
+    "src": "resources/js/main.js",
+    "isEntry": true
+  },
+  "resources/js/motion.js": {
+    "file": "assets/motion-CwcvPBtY.js",
+    "name": "motion",
+    "src": "resources/js/motion.js",
+    "isEntry": true
+  }
+}
