@@ -143,6 +143,15 @@ class AdminPanelProvider extends PanelProvider
                         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
                     }
                 }
+                @media (min-width: 769px) {
+                    /* Eliminate horizontal scrollbar on desktop by allowing text to wrap */
+                    .fi-ta-table td, 
+                    .fi-ta-table th, 
+                    .fi-ta-table .fi-ta-text-item,
+                    .fi-ta-table .fi-ta-text {
+                        white-space: normal !important;
+                    }
+                }
             </style>'
         );
     }
