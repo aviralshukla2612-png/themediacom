@@ -98,7 +98,7 @@ class CorporateContentResource extends Resource
                     ,
                 TextColumn::make('page_subtitle')
                     ->label('Subtitle')
-                    ->limit(60)
+                    ->limit(60)->wrap()
                     ,
                 TextColumn::make('updated_at')
                     ->label('Updated At')

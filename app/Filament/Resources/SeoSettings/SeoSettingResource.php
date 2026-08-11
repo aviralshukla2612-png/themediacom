@@ -67,8 +67,8 @@ class SeoSettingResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('seo_title')->label('SEO Title')->limit(60),
-                TextColumn::make('seo_description')->label('Meta Description')->limit(80),
+                TextColumn::make('seo_title')->label('SEO Title')->limit(60)->wrap(),
+                TextColumn::make('seo_description')->label('Meta Description')->limit(80)->wrap(),
                 TextColumn::make('updated_at')
                     ->label('Last Updated')
                     ->dateTime('d M Y, H:i')

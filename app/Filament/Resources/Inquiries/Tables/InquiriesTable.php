@@ -30,7 +30,7 @@ class InquiriesTable
                 TextColumn::make('service_type')
                     ->label('Service / Subject')
                     ->searchable()
-                    ->limit(40)
+                    ->limit(40)->wrap()
                     ,
                 TextColumn::make('status')
                     ->badge()

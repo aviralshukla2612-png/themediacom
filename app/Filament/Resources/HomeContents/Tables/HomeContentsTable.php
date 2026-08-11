@@ -19,10 +19,10 @@ class HomeContentsTable
                 TextColumn::make('heading')
                     ->label('Hero Heading')
                     ->searchable()
-                    ->limit(50),
+                    ->limit(50)->wrap(),
                 TextColumn::make('paragraph')
                     ->label('Paragraph')
-                    ->limit(60)
+                    ->limit(60)->wrap()
                     ->toggleable(isToggledHiddenByDefault: true),
                 ImageColumn::make('bg_image')
                     ->label('Background')

@@ -30,7 +30,7 @@ class ServicesTable
                     ,
                 TextColumn::make('description')
                     ->label('Description')
-                    ->limit(60)
+                    ->limit(60)->wrap()
                     ->searchable()
                     ,
                 TextColumn::make('updated_at')

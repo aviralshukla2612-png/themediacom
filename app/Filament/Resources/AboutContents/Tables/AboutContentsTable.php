@@ -19,7 +19,7 @@ class AboutContentsTable
                 TextColumn::make('heading')
                     ->label('Page Heading')
                     ->searchable()
-                    ->limit(50),
+                    ->limit(50)->wrap(),
                 ImageColumn::make('hero_image')
                     ->label('Hero Image')
                     ->disk('public')
@@ -27,7 +27,7 @@ class AboutContentsTable
                     ->width(80),
                 TextColumn::make('subtitle')
                     ->label('Subtitle')
-                    ->limit(60),
+                    ->limit(60)->wrap(),
                 TextColumn::make('updated_at')
                     ->label('Last Updated')
                     ->dateTime('d M Y, H:i')
