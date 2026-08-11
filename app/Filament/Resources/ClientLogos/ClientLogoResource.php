@@ -49,7 +49,7 @@ class ClientLogoResource extends Resource
                         FileUpload::make('image')
                             ->label('Logo Image')
                             ->image()
-                            ->disk('public')
+                            ->disk('public_root')
                             ->directory('clients')
                             ->required(),
                     ]),
