@@ -50,6 +50,7 @@ class ServicesTable
             ->filters([
                 TernaryFilter::make('status')->label('Active'),
             ])
+            ->stackedOnMobile()
             ->recordActions([
                 ViewAction::make()->iconButton()->tooltip('View'),
                 EditAction::make()->iconButton()->tooltip('Edit'),
