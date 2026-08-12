@@ -80,7 +80,7 @@ class SiteSettingForm
                             ->nullable()
                             ->columnSpanFull(),
 
-                        \Filament\Forms\Components\Grid::make(2)
+                        \Filament\Schemas\Components\Grid::make(2)
                             ->schema([
                                 \Filament\Forms\Components\DatePicker::make('schedule_date')
                                     ->label('Go-Live Date')
