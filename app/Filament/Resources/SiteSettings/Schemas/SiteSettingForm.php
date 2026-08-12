@@ -83,10 +83,11 @@ class SiteSettingForm
                         DateTimePicker::make('scheduled_logo_at')
                             ->label('Go-Live Date & Time (IST)')
                             ->timezone('Asia/Kolkata')
-                            ->native(false)               // Filament's custom picker (much better UI)
-                            ->minDate(now('Asia/Kolkata')) // Block all past dates
-                            ->displayFormat('D, d M Y • h:i A') // e.g. Wed, 13 Aug 2026 • 03:00 PM
-                            ->minutesStep(5)              // Clock steps in 5-min intervals
+                            ->native(true)                  // Browser's clean datetime picker
+                            ->minDate(now('Asia/Kolkata'))  // Block past dates
+                            ->default(                       // Pre-fill: tomorrow at 9:00 AM
+                                now('Asia/Kolkata')->addDay()->setTime(9, 0, 0)
+                            )
                             ->seconds(false)
                             ->helperText('Pick any future date & time. Logo will swap automatically within 1 minute.')
                             ->nullable(),
