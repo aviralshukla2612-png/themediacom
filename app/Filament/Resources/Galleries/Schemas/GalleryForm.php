@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Galleries\Schemas;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -17,35 +18,51 @@ class GalleryForm
                     ->schema([
                         \Filament\Forms\Components\Placeholder::make('image_preview')
                             ->label('Current Image')
-                            ->content(fn ($record) => $record && $record->image ? new \Illuminate\Support\HtmlString('<img src="' . asset($record->image) . '" style="max-height: 400px; width: 100%; object-fit: contain; border-radius: 8px; border: 1px solid #e5e7eb;" />') : 'No image uploaded')
+                            ->content(function ($record) {
+                                if (!$record || !$record->image) return 'No image uploaded';
+                                $url = \Illuminate\Support\Str::startsWith($record->image, ['new_gallary', 'client logo'])
+                                    ? asset($record->image)
+                                    : asset('storage/' . $record->image);
+                                return new \Illuminate\Support\HtmlString('<img src="' . $url . '" style="max-height: 400px; width: 100%; object-fit: contain; border-radius: 8px; border: 1px solid #e5e7eb;" />');
+                            })
                             ->hidden(fn ($record) => ! $record || ! $record->image)
                             ->columnSpanFull(),
+
+                        // Category must come BEFORE the upload so the directory closure
+                        // can read its value at upload time via $get('category')
+                        Select::make('category')
+                            ->label('Category')
+                            ->options([
+                                'rwa'       => 'RWA',
+                                'btl'       => 'BTL Activity',
+                                'mall'      => 'Mall Promotions',
+                                'corporate' => 'Corporate Events',
+                            ])
+                            ->required()
+                            ->live(),   // re-render upload field when category changes
+
                         FileUpload::make('image')
                             ->label('Upload New Image (Leave empty to keep current)')
                             ->image()
-                            ->maxSize(5120)
-                            ->disk('public_root')
-                            ->directory(fn (callable $get) => 'new_gallary/' . match(strtolower($get('category') ?? '')) {
-                                'rwa' => 'RWA',
-                                'btl' => 'BTL Activity',
-                                'mall' => 'Mall Promotions',
-                                'corporate' => 'Corporate Events',
-                                default => 'Uploads'
-                            })
+                            ->maxSize(10240)
+                            // Use disk('public') → files stored in storage/app/public/gallery/
+                            // accessible via public/storage/gallery/ (symlink)
+                            // DB stores: 'gallery/filename.jpg'
+                            ->disk('public')
+                            ->directory('gallery')
                             ->preserveFilenames()
                             ->deleteUploadedFileUsing(fn () => null)
-                            ->formatStateUsing(fn () => null)
+                            // On EDIT: show empty upload field (don't preload old file)
+                            ->formatStateUsing(fn ($state, $record) => null)
+                            // Only save to DB if a new file was actually uploaded
                             ->dehydrated(fn ($state) => filled($state))
                             ->required(fn (string $operation): bool => $operation === 'create')
                             ->columnSpanFull(),
-                        \Filament\Schemas\Components\Grid::make(2)
-                            ->schema([
-                                TextInput::make('category')
-                                    ->required(),
-                                TextInput::make('sort_order')
-                                    ->numeric()
-                                    ->default(0),
-                            ]),
+
+                        TextInput::make('sort_order')
+                            ->label('Sort Order')
+                            ->numeric()
+                            ->default(0),
                     ]),
             ]);
     }
