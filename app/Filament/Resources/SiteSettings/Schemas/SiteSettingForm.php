@@ -85,15 +85,15 @@ class SiteSettingForm
                                 \Filament\Forms\Components\DatePicker::make('schedule_date')
                                     ->label('Go-Live Date')
                                     ->native(false)
-                                    ->minDate(now('Asia/Kolkata'))
+                                    ->minDate(now('Asia/Kolkata')->startOfDay())
                                     ->displayFormat('d M Y')
                                     ->dehydrated(false)
                                     ->afterStateHydrated(function ($component, $record) {
                                         if ($record && $record->scheduled_logo_at) {
                                             $component->state(\Illuminate\Support\Carbon::parse($record->scheduled_logo_at)->format('Y-m-d'));
                                         } else {
-                                            // Smart default: Tomorrow
-                                            $component->state(now('Asia/Kolkata')->addDay()->format('Y-m-d'));
+                                            // Smart default: Today
+                                            $component->state(now('Asia/Kolkata')->format('Y-m-d'));
                                         }
                                     })
                                     ->live(),
@@ -107,8 +107,8 @@ class SiteSettingForm
                                         if ($record && $record->scheduled_logo_at) {
                                             $component->state(\Illuminate\Support\Carbon::parse($record->scheduled_logo_at)->format('H:i:s'));
                                         } else {
-                                            // Smart default: 9:00 AM
-                                            $component->state('09:00:00');
+                                            // Smart default: Current time rounded to nearest 5 mins
+                                            $component->state(now('Asia/Kolkata')->format('H:i:s'));
                                         }
                                     })
                                     ->live(),
@@ -149,8 +149,8 @@ class SiteSettingForm
                                     }
                                     $set('scheduled_logo', null);
                                     $set('scheduled_logo_at', null);
-                                    $set('schedule_date', now('Asia/Kolkata')->addDay()->format('Y-m-d'));
-                                    $set('schedule_time', '09:00:00');
+                                    $set('schedule_date', now('Asia/Kolkata')->format('Y-m-d'));
+                                    $set('schedule_time', now('Asia/Kolkata')->format('H:i:s'));
                                 }),
                         ])->columnSpanFull(),
 
