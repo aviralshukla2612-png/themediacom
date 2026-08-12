@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\SiteSettings\Schemas;
 
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Set;
 use Filament\Schemas\Schema;
 
 class SiteSettingForm
@@ -13,7 +15,7 @@ class SiteSettingForm
     {
         return $schema
             ->components([
-                // ── Existing: Current Logo & Favicon ──────────────────────────
+                // ── Site Identity ──────────────────────────────────────────
                 \Filament\Schemas\Components\Section::make('Site Identity')
                     ->description('The logo and favicon currently live on your website.')
                     ->icon('heroicon-o-photo')
@@ -39,13 +41,13 @@ class SiteSettingForm
                             ->nullable(),
                     ]),
 
-                // ── NEW: Scheduled Logo Change ─────────────────────────────────
+                // ── Scheduled Logo Change ──────────────────────────────────
                 \Filament\Schemas\Components\Section::make('⏰ Scheduled Logo Change')
                     ->description('Upload a new logo and set the exact date & time to go live. The system will swap it automatically — no manual action needed.')
                     ->icon('heroicon-o-clock')
                     ->schema([
 
-                        // Info card: shows current pending schedule (if any)
+                        // Status info card
                         \Filament\Forms\Components\Placeholder::make('schedule_status')
                             ->label('Current Pending Schedule')
                             ->content(function ($record) {
@@ -56,9 +58,15 @@ class SiteSettingForm
                                 }
                                 $time = \Illuminate\Support\Carbon::parse($record->scheduled_logo_at)
                                     ->timezone('Asia/Kolkata')
-                                    ->format('d M Y, h:i A');
+                                    ->format('D, d M Y • h:i A');
                                 return new \Illuminate\Support\HtmlString(
-                                    '<span style="color:#f59e0b;font-weight:600;">🕐 New logo scheduled to go live at: ' . $time . ' IST</span>'
+                                    '<div style="display:flex;align-items:center;gap:10px;background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px 16px;">'
+                                    . '<span style="font-size:1.4rem;">🕐</span>'
+                                    . '<div>'
+                                    . '<div style="color:#92400e;font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">Logo going live at</div>'
+                                    . '<div style="color:#b45309;font-size:1rem;font-weight:700;">' . $time . ' IST</div>'
+                                    . '</div>'
+                                    . '</div>'
                                 );
                             })
                             ->columnSpanFull(),
@@ -73,13 +81,44 @@ class SiteSettingForm
                             ->columnSpanFull(),
 
                         DateTimePicker::make('scheduled_logo_at')
-                            ->label('Go-Live Date & Time')
+                            ->label('Go-Live Date & Time (IST)')
                             ->timezone('Asia/Kolkata')
-                            ->helperText('Set the exact date & time (IST) when the logo above should go live automatically.')
-                            ->nullable()
-                            ->seconds(false),   // hide seconds for clean UX
+                            ->native(false)               // Filament's custom picker (much better UI)
+                            ->minDate(now('Asia/Kolkata')) // Block all past dates
+                            ->displayFormat('D, d M Y • h:i A') // e.g. Wed, 13 Aug 2026 • 03:00 PM
+                            ->minutesStep(5)              // Clock steps in 5-min intervals
+                            ->seconds(false)
+                            ->helperText('Pick any future date & time. Logo will swap automatically within 1 minute.')
+                            ->nullable(),
+
+                        // Cancel Schedule button — only shown when a schedule exists
+                        \Filament\Forms\Components\Actions::make([
+                            Action::make('cancel_schedule')
+                                ->label('🗑  Cancel Scheduled Change')
+                                ->color('danger')
+                                ->outlined()
+                                ->requiresConfirmation()
+                                ->modalHeading('Cancel the scheduled logo change?')
+                                ->modalDescription('This will remove the pending schedule. The current active logo stays unchanged.')
+                                ->modalSubmitActionLabel('Yes, cancel it')
+                                ->visible(fn ($record) => $record && $record->scheduled_logo_at)
+                                ->action(function (Set $set, $record) {
+                                    if ($record) {
+                                        \Illuminate\Support\Facades\DB::table('site_settings')
+                                            ->where('id', $record->id)
+                                            ->update([
+                                                'scheduled_logo'    => null,
+                                                'scheduled_logo_at' => null,
+                                            ]);
+                                        \Illuminate\Support\Facades\Cache::forget('global_seo_settings');
+                                        \Illuminate\Support\Facades\Cache::forget('logo_schedule_last_check');
+                                    }
+                                    $set('scheduled_logo', null);
+                                    $set('scheduled_logo_at', null);
+                                }),
+                        ])->columnSpanFull(),
+
                     ]),
             ]);
     }
 }
-
