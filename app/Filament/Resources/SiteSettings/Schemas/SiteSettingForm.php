@@ -80,20 +80,58 @@ class SiteSettingForm
                             ->nullable()
                             ->columnSpanFull(),
 
-                        DateTimePicker::make('scheduled_logo_at')
-                            ->label('Go-Live Date & Time (IST)')
-                            ->timezone('Asia/Kolkata')
-                            ->native(false)                 // Filament's custom calendar grid
-                            ->minDate(now('Asia/Kolkata'))  // Block past dates
-                            ->default(                       // Pre-fill: tomorrow at 9:00 AM
-                                now('Asia/Kolkata')->addDay()->setTime(9, 0, 0)
-                            )
-                            ->displayFormat('d M Y, h:i A') // e.g. 13 Aug 2026, 09:00 AM
-                            ->hoursStep(1)
-                            ->minutesStep(15)               // Clean steps: :00, :15, :30, :45
-                            ->seconds(false)
-                            ->helperText('Pick any future date & time. Logo will swap automatically within 1 minute.')
-                            ->nullable(),
+                        \Filament\Forms\Components\Grid::make(2)
+                            ->schema([
+                                \Filament\Forms\Components\DatePicker::make('schedule_date')
+                                    ->label('Go-Live Date')
+                                    ->native(false)
+                                    ->minDate(now('Asia/Kolkata'))
+                                    ->displayFormat('d M Y')
+                                    ->dehydrated(false)
+                                    ->afterStateHydrated(function ($component, $record) {
+                                        if ($record && $record->scheduled_logo_at) {
+                                            $component->state(\Illuminate\Support\Carbon::parse($record->scheduled_logo_at)->format('Y-m-d'));
+                                        } else {
+                                            // Smart default: Tomorrow
+                                            $component->state(now('Asia/Kolkata')->addDay()->format('Y-m-d'));
+                                        }
+                                    })
+                                    ->live(),
+
+                                \Filament\Forms\Components\Select::make('schedule_time')
+                                    ->label('Go-Live Time (IST)')
+                                    ->searchable()
+                                    ->options(function () {
+                                        $times = [];
+                                        $start = \Illuminate\Support\Carbon::parse('00:00:00');
+                                        for ($i = 0; $i < 48; $i++) {
+                                            $times[$start->format('H:i:s')] = $start->format('h:i A'); // e.g. "09:30 AM"
+                                            $start->addMinutes(30);
+                                        }
+                                        return $times;
+                                    })
+                                    ->dehydrated(false)
+                                    ->afterStateHydrated(function ($component, $record) {
+                                        if ($record && $record->scheduled_logo_at) {
+                                            $component->state(\Illuminate\Support\Carbon::parse($record->scheduled_logo_at)->format('H:i:s'));
+                                        } else {
+                                            // Smart default: 9:00 AM
+                                            $component->state('09:00:00');
+                                        }
+                                    })
+                                    ->live(),
+                            ]),
+
+                        // Hidden field that combines Date + Time right before saving to DB
+                        \Filament\Forms\Components\Hidden::make('scheduled_logo_at')
+                            ->dehydrateStateUsing(function ($state, \Filament\Forms\Get $get) {
+                                $date = $get('schedule_date');
+                                $time = $get('schedule_time');
+                                if ($date && $time) {
+                                    return $date . ' ' . $time;
+                                }
+                                return null;
+                            }),
 
                         // Cancel Schedule button — only shown when a schedule exists
                         \Filament\Schemas\Components\Actions::make([
@@ -119,6 +157,8 @@ class SiteSettingForm
                                     }
                                     $set('scheduled_logo', null);
                                     $set('scheduled_logo_at', null);
+                                    $set('schedule_date', now('Asia/Kolkata')->addDay()->format('Y-m-d'));
+                                    $set('schedule_time', '09:00:00');
                                 }),
                         ])->columnSpanFull(),
 
