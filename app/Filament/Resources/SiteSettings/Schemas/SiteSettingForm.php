@@ -98,18 +98,10 @@ class SiteSettingForm
                                     })
                                     ->live(),
 
-                                \Filament\Forms\Components\Select::make('schedule_time')
+                                \Filament\Forms\Components\TimePicker::make('schedule_time')
                                     ->label('Go-Live Time (IST)')
-                                    ->searchable()
-                                    ->options(function () {
-                                        $times = [];
-                                        $start = \Illuminate\Support\Carbon::parse('00:00:00');
-                                        for ($i = 0; $i < 48; $i++) {
-                                            $times[$start->format('H:i:s')] = $start->format('h:i A'); // e.g. "09:30 AM"
-                                            $start->addMinutes(30);
-                                        }
-                                        return $times;
-                                    })
+                                    ->native(true)
+                                    ->seconds(false)
                                     ->dehydrated(false)
                                     ->afterStateHydrated(function ($component, $record) {
                                         if ($record && $record->scheduled_logo_at) {
