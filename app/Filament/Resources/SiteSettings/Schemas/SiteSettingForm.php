@@ -90,7 +90,7 @@ class SiteSettingForm
                                     ->dehydrated(false)
                                     ->afterStateHydrated(function ($component, $record) {
                                         if ($record && $record->scheduled_logo_at) {
-                                            $component->state(\Illuminate\Support\Carbon::parse($record->scheduled_logo_at)->format('Y-m-d'));
+                                            $component->state(\Illuminate\Support\Carbon::parse($record->scheduled_logo_at)->timezone('Asia/Kolkata')->format('Y-m-d'));
                                         } else {
                                             // Smart default: Today
                                             $component->state(now('Asia/Kolkata')->format('Y-m-d'));
@@ -105,7 +105,7 @@ class SiteSettingForm
                                     ->dehydrated(false)
                                     ->afterStateHydrated(function ($component, $record) {
                                         if ($record && $record->scheduled_logo_at) {
-                                            $component->state(\Illuminate\Support\Carbon::parse($record->scheduled_logo_at)->format('H:i:s'));
+                                            $component->state(\Illuminate\Support\Carbon::parse($record->scheduled_logo_at)->timezone('Asia/Kolkata')->format('H:i:s'));
                                         } else {
                                             // Smart default: Current time rounded to nearest 5 mins
                                             $component->state(now('Asia/Kolkata')->format('H:i:s'));
@@ -120,7 +120,10 @@ class SiteSettingForm
                                 $date = $get('schedule_date');
                                 $time = $get('schedule_time');
                                 if ($date && $time) {
-                                    return $date . ' ' . $time;
+                                    // Parse the selected IST time and convert to UTC for the database
+                                    return \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $date . ' ' . $time, 'Asia/Kolkata')
+                                        ->utc()
+                                        ->format('Y-m-d H:i:s');
                                 }
                                 return null;
                             }),
