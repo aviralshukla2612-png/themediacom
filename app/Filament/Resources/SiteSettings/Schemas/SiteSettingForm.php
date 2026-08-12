@@ -116,7 +116,7 @@ class SiteSettingForm
 
                         // Hidden field that combines Date + Time right before saving to DB
                         \Filament\Forms\Components\Hidden::make('scheduled_logo_at')
-                            ->dehydrateStateUsing(function ($state, \Filament\Forms\Get $get) {
+                            ->dehydrateStateUsing(function ($state, $get) {
                                 $date = $get('schedule_date');
                                 $time = $get('schedule_time');
                                 if ($date && $time) {
