@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\SiteSettings\Schemas;
 
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
@@ -92,7 +92,7 @@ class SiteSettingForm
                             ->nullable(),
 
                         // Cancel Schedule button — only shown when a schedule exists
-                        \Filament\Forms\Components\Actions::make([
+                        \Filament\Schemas\Components\Actions::make([
                             Action::make('cancel_schedule')
                                 ->label('🗑  Cancel Scheduled Change')
                                 ->color('danger')
