@@ -121,7 +121,7 @@ class SiteSettingForm
                                 $time = $get('schedule_time');
                                 if ($date && $time) {
                                     // Parse the selected IST time and convert to UTC for the database
-                                    return \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $date . ' ' . $time, 'Asia/Kolkata')
+                                    return \Illuminate\Support\Carbon::parse($date . ' ' . $time, 'Asia/Kolkata')
                                         ->utc()
                                         ->format('Y-m-d H:i:s');
                                 }
