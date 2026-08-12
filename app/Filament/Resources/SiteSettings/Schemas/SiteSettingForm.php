@@ -136,7 +136,7 @@ class SiteSettingForm
                                 ->modalDescription('This will remove the pending schedule. The current active logo stays unchanged.')
                                 ->modalSubmitActionLabel('Yes, cancel it')
                                 ->visible(fn ($record) => $record && $record->scheduled_logo_at)
-                                ->action(function (Set $set, $record) {
+                                ->action(function ($set, $record) {
                                     if ($record) {
                                         \Illuminate\Support\Facades\DB::table('site_settings')
                                             ->where('id', $record->id)
