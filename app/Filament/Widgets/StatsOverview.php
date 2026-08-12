@@ -5,7 +5,6 @@ namespace App\Filament\Widgets;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use App\Models\Service;
-use App\Models\Campaign;
 use App\Models\Gallery;
 use App\Models\Inquiry;
 
@@ -21,10 +20,6 @@ class StatsOverview extends BaseWidget
                 ->descriptionIcon('heroicon-m-sparkles')
                 ->color('primary'),
 
-            Stat::make('Total Campaigns', Campaign::count())
-                ->description('Campaign case studies published')
-                ->descriptionIcon('heroicon-m-megaphone')
-                ->color('primary'),
 
             Stat::make('Gallery Assets', Gallery::count())
                 ->description('Images & videos in gallery')
