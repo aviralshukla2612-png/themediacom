@@ -15,11 +15,6 @@ Route::get('/ai', [PageController::class, 'ai'])->name('ai');
 // Redirect legacy .php URLs
 Route::redirect('/contact.php', '/contact', 301);
 
-// Campaigns
-use App\Http\Controllers\CampaignController;
-Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
-Route::get('/campaigns/{id}', [CampaignController::class, 'show'])->name('campaigns.show');
-
 // Default legacy route if needed, else points to index
 Route::get('/default', [PageController::class, 'index'])->name('default');
 

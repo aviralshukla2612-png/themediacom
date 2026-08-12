@@ -116,7 +116,6 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="{{ route('campaigns.index') }}" class="nav-link {{ request()->routeIs('campaigns.*') ? 'active' : '' }}">Campaigns</a></li>
                 <li><a href="{{ route('gallery') }}" class="nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</a></li>
                 <li><a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
                 <li style="margin-top: 1rem;"><a href="{{ route('contact') }}" class="btn btn-primary" style="width: 100%; text-align: center;">Get Quote</a></li>

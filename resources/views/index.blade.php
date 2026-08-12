@@ -334,7 +334,7 @@
                 </p>
                 <div class="hero-buttons gsap-fade-up"
                     style="display: flex; gap: 1rem; flex-wrap: wrap; animation-delay: 0.3s;">
-                    <a href="{{ route('campaigns.index') }}" class="btn btn-primary execution-btn btn-hover"
+                    <a href="{{ route('gallery') }}" class="btn btn-primary execution-btn btn-hover"
                         style="background: var(--accent-red); padding: 1.2rem 2.5rem !important; border-radius: 8px !important; font-weight: 700; transition: all 0.3s; display: inline-block;">View
                         Our Campaigns</a>
                     <a href="{{ route('contact') }}" class="btn btn-outline execution-btn-outline btn-outline-hover"
