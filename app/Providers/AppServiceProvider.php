@@ -81,8 +81,8 @@ class AppServiceProvider extends ServiceProvider
                     'seo_image'       => $seo?->seo_image        ?? '',
 
                     'site_name'       => $site?->site_name       ?? 'The Media Com',
-                    'logo_image'      => $site?->logo_image      ? asset('storage/' . $site->logo_image) : asset('website.png'),
-                    'favicon_image'   => $site?->favicon_image   ? asset('storage/' . $site->favicon_image) : asset('favicon.png'),
+                    'logo_image'      => asset('website.png'),
+                    'favicon_image'   => asset('favicon.png'),
 
                     'contact_email'   => $contact?->email        ?? 'info@themediacom.com',
                     'contact_phone'   => $contact?->phone        ?? '+91 88664 46225',
