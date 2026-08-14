@@ -99,7 +99,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <a href="{{ route('home') }}" class="logo" style="display: flex; align-items: center;"><img src="{{ $global_seo['logo_image'] ?? asset('website.png') }}" alt="{{ $global_seo['site_name'] ?? 'The Media Com' }}" style="height: 52px; max-height: 100%;"></a>
+            <a href="{{ route('home') }}" class="logo" style="display: flex; align-items: center;"><img src="{{ $global_seo['logo_image'] ?? asset('website.png') }}" alt="{{ $global_seo['site_name'] ?? 'The Media Com' }}" style="height: 80px; width: auto;"></a>
             
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
