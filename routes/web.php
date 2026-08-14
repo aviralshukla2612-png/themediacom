@@ -22,3 +22,13 @@ Route::get('/default', [PageController::class, 'index'])->name('default');
 Route::post('/contact/submit', [InquiryController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('inquiry.store');
+
+// Temporary route to fix the storage symlink on production (Hostinger)
+Route::get('/fix-storage', function () {
+    try {
+        Illuminate\Support\Facades\Artisan::call('storage:link');
+        return 'Storage link created successfully. Check your logo now!';
+    } catch (\Exception $e) {
+        return 'Error creating storage link: ' . $e->getMessage();
+    }
+});
