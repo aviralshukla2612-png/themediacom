@@ -30,17 +30,17 @@ $PHP_BIN artisan migrate --force
 
 # 6. Sync public folder to your public_html folder
 # IMPORTANT: We exclude .htaccess and index.php so we don't overwrite your custom server settings!
-echo "📂 Syncing public files to public_html/laravel/public..."
-rsync -a public/ ../public_html/laravel/public/ --exclude=.htaccess --exclude=index.php --exclude=storage
+echo "📂 Syncing public files to public_html..."
+rsync -a public/ ../public_html/ --exclude=.htaccess --exclude=index.php --exclude=storage
 
 # 7. Physically copy storage/app/public to the web folder (bypasses cPanel symlink restrictions entirely)
 echo "🔗 Copying storage files directly to public_html..."
 # Remove symlink if it exists (ignore error if it is a directory)
-rm -f ../public_html/laravel/public/storage 2>/dev/null || true
-mkdir -p ../public_html/laravel/public/storage
-rsync -a storage/app/public/ ../public_html/laravel/public/storage/
+rm -f ../public_html/storage 2>/dev/null || true
+mkdir -p ../public_html/storage
+rsync -a storage/app/public/ ../public_html/storage/
 
-# 7. Turn off maintenance mode
+# 8. Turn off maintenance mode
 echo "✅ Exiting maintenance mode..."
 $PHP_BIN artisan up
 
