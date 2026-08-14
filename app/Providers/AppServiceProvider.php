@@ -35,15 +35,19 @@ class AppServiceProvider extends ServiceProvider
         // it instantly via a direct DB update and bust the settings cache.
         // Cost: one cache.get per request, one DB query per minute at most.
         $lastCheck = Cache::get('logo_schedule_last_check', 0);
+        $currentTime = time();
 
-        if (now()->timestamp - $lastCheck >= 60) {
+        if ($currentTime - $lastCheck >= 60) {
             // Mark this minute as checked immediately so concurrent requests
             // don't all hit the DB at once
-            Cache::put('logo_schedule_last_check', now()->timestamp, 120);
+            Cache::put('logo_schedule_last_check', $currentTime, 120);
 
+            // Use gmdate to ensure we're comparing UTC time strings, bypassing any app timezone issues
+            $currentUtc = gmdate('Y-m-d H:i:s');
+            
             $pending = SiteSetting::whereNotNull('scheduled_logo')
                 ->whereNotNull('scheduled_logo_at')
-                ->where('scheduled_logo_at', '<=', now())
+                ->where('scheduled_logo_at', '<=', $currentUtc)
                 ->first();
 
             if ($pending) {
@@ -56,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
                         'logo_image'        => $pending->scheduled_logo,
                         'scheduled_logo'    => null,
                         'scheduled_logo_at' => null,
-                        'updated_at'        => now(),
+                        'updated_at'        => $currentUtc,
                     ]);
 
                 // Bust the main settings cache so the new logo loads
