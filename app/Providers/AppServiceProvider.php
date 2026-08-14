@@ -18,6 +18,11 @@ class AppServiceProvider extends ServiceProvider
         // and the web root is /public_html.
         if (is_dir(base_path('../public_html'))) {
             $this->app->usePublicPath(base_path('../public_html'));
+            // Force asset URL to prevent 'laravel/public' from being erroneously prepended
+            // to Vite assets when accessed via the public_html document root on Hostinger.
+            if (request()->header('host')) {
+                config(['app.asset_url' => rtrim(request()->schemeAndHttpHost(), '/')]);
+            }
         }
     }
 
