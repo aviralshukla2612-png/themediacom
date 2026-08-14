@@ -24,8 +24,8 @@ class GalleriesTable
                     ->formatStateUsing(function ($record) {
                         if (!$record->image) return '<span style="color:#9ca3af;font-size:0.75rem;">No image</span>';
                         $url = \Illuminate\Support\Str::startsWith($record->image, ['new_gallary', 'client logo']) 
-                            ? asset($record->image) 
-                            : asset('storage/' . $record->image);
+                            ? '/' . ltrim($record->image, '/') 
+                            : '/storage/' . ltrim($record->image, '/');
                         
                         // Fix for HTML Purifier breaking on spaces and parentheses in URLs
                         $safeUrl = str_replace([' ', '(', ')'], ['%20', '%28', '%29'], $url);

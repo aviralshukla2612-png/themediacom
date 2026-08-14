@@ -38,7 +38,10 @@
                     <div class="bento-gallery-item filter-item {{ $item['category'] }} gsap-fade-up"
                         style="grid-column: span 1; grid-row: span 1; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: opacity 0.4s; height: 100%;">
                         @php
-                            $videoUrl = \Illuminate\Support\Str::startsWith($item['path'], ['new_gallary', 'client logo']) ? asset($item['path']) : asset('storage/' . $item['path']);
+                            $rawVideoUrl = \Illuminate\Support\Str::startsWith($item['path'], ['new_gallary', 'client logo']) 
+                                ? '/' . ltrim($item['path'], '/') 
+                                : '/storage/' . ltrim($item['path'], '/');
+                            $videoUrl = str_replace([' ', '(', ')'], ['%20', '%28', '%29'], $rawVideoUrl);
                         @endphp
                         <video autoplay loop muted playsinline class="img-cover"
                             style="filter: brightness(0.7); width: 100%; height: 100%; object-fit: cover;">
@@ -54,7 +57,9 @@
                     <div class="bento-gallery-item filter-item {{ $item['category'] }} gsap-fade-up"
                         style="grid-column: span 1; grid-row: span 1; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.4s, opacity 0.4s; height: 100%;">
                         @php
-                            $rawUrl = \Illuminate\Support\Str::startsWith($item['path'], ['new_gallary', 'client logo']) ? asset($item['path']) : asset('storage/' . $item['path']);
+                            $rawUrl = \Illuminate\Support\Str::startsWith($item['path'], ['new_gallary', 'client logo']) 
+                                ? '/' . ltrim($item['path'], '/') 
+                                : '/storage/' . ltrim($item['path'], '/');
                             $imageUrl = str_replace([' ', '(', ')'], ['%20', '%28', '%29'], $rawUrl);
                         @endphp
                         <img src="{{ $imageUrl }}"
