@@ -17,12 +17,16 @@ class ImportExistingImagesSeeder extends Seeder
         // 1. Import Galleries
         $galleryPath = public_path('new_gallary');
         if (File::exists($galleryPath)) {
-            $files = File::files($galleryPath);
+            // Use allFiles to scan subdirectories recursively
+            $files = File::allFiles($galleryPath);
             foreach ($files as $file) {
-                $filename = $file->getFilename();
                 // Ensure it's an image
                 if (in_array(strtolower($file->getExtension()), ['jpg', 'jpeg', 'png', 'webp', 'gif'])) {
-                    $imagePath = 'new_gallary/' . $filename;
+                    // Get the relative path starting from new_gallary (e.g., new_gallary/RWA/image.jpg)
+                    $relativePath = 'new_gallary/' . $file->getRelativePathname();
+                    // Replace backslashes with forward slashes for URLs
+                    $imagePath = str_replace('\\', '/', $relativePath);
+                    
                     Gallery::firstOrCreate(
                         ['image' => $imagePath],
                         [
