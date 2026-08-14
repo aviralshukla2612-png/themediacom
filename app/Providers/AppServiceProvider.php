@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
         // Bind the public path to public_html if we're on the production server
         // where the app is typically placed in a sibling folder (like /laravel)
         // and the web root is /public_html.
-        if (is_dir(base_path('../public_html'))) {
+        if (env('APP_ENV') === 'production') {
             $this->app->usePublicPath(base_path('../public_html'));
             // Force asset URL to prevent 'laravel/public' from being erroneously prepended
             // to Vite assets when accessed via the public_html document root on Hostinger.
