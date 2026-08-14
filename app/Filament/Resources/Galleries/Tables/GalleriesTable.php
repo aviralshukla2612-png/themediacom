@@ -26,7 +26,11 @@ class GalleriesTable
                         $url = \Illuminate\Support\Str::startsWith($record->image, ['new_gallary', 'client logo']) 
                             ? asset($record->image) 
                             : asset('storage/' . $record->image);
-                        return '<img src="' . $url . '" onerror="this.style.display=\'none\'" style="width:80px;height:50px;object-fit:cover;border-radius:4px;" />';
+                        
+                        // Fix for HTML Purifier breaking on spaces and parentheses in URLs
+                        $safeUrl = str_replace([' ', '(', ')'], ['%20', '%28', '%29'], $url);
+
+                        return '<img src="' . $safeUrl . '" style="width:80px;height:50px;object-fit:cover;border-radius:4px;" />';
                     })
                     ,
                 TextColumn::make('category')

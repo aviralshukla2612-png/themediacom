@@ -54,7 +54,8 @@
                     <div class="bento-gallery-item filter-item {{ $item['category'] }} gsap-fade-up"
                         style="grid-column: span 1; grid-row: span 1; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.4s, opacity 0.4s; height: 100%;">
                         @php
-                            $imageUrl = \Illuminate\Support\Str::startsWith($item['path'], ['new_gallary', 'client logo']) ? asset($item['path']) : asset('storage/' . $item['path']);
+                            $rawUrl = \Illuminate\Support\Str::startsWith($item['path'], ['new_gallary', 'client logo']) ? asset($item['path']) : asset('storage/' . $item['path']);
+                            $imageUrl = str_replace([' ', '(', ')'], ['%20', '%28', '%29'], $rawUrl);
                         @endphp
                         <img src="{{ $imageUrl }}"
                             alt="{{ $item['title'] }}" class="img-cover"
