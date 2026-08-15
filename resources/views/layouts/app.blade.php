@@ -10,7 +10,7 @@
     <!-- Open Graph Tags -->
     <meta property="og:title" content="@yield('seo_title', $global_seo['seo_title'] ?? 'The Media Com | From Strategy to Street — WE EXECUTE')">
     <meta property="og:description" content="@yield('seo_description', $global_seo['seo_description'] ?? 'The Media Com is a leading brand activation and event execution company dedicated to creating impactful on-ground marketing experiences.')">
-    <meta property="og:image" content="@yield('seo_image', asset($global_seo['seo_image'] ?? 'logo_transparent.png'))">
+    <meta property="og:image" content="@yield('seo_image', asset($global_seo['seo_image'] ?? 'webfinal.png'))">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/png" href="{{ $global_seo['favicon_image'] ?? asset('favicon.png') }}">
@@ -99,7 +99,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <a href="{{ route('home') }}" class="logo" style="display: flex; align-items: center;"><img src="{{ $global_seo['logo_image'] ?? asset('logo_transparent.png') }}" alt="{{ $global_seo['site_name'] ?? 'The Media Com' }}" style="height: 80px; width: auto;"></a>
+            <a href="{{ route('home') }}" class="logo" style="display: flex; align-items: center;"><img src="{{ $global_seo['logo_image'] ?? asset('webfinal.png') }}" alt="{{ $global_seo['site_name'] ?? 'The Media Com' }}" style="height: 80px; width: auto;"></a>
             
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
@@ -139,7 +139,7 @@
                 <div class="footer-about">
                     <a href="{{ route('home') }}" class="logo"
                         style="display: inline-block; margin-bottom: 1.5rem; margin-left: -1.5rem;"><img
-                            src="{{ $global_seo['logo_image'] ?? asset('logo_transparent.png') }}" alt="{{ $global_seo['site_name'] ?? 'The Media Com' }}"
+                            src="{{ $global_seo['logo_image'] ?? asset('webfinal.png') }}" alt="{{ $global_seo['site_name'] ?? 'The Media Com' }}"
                             style="width: 100%; max-width: 320px; height: auto;"></a>
                     <p>{{ $global_seo['footer_text'] ?? ($footer_text ?? 'The Media Com is a leading brand activation and event execution company dedicated to creating impactful on-ground marketing experiences. We specialize in RWA activations, BTL campaigns, mall promotions, corporate events, product sampling, and customer engagement programs that help brands connect with their audience in meaningful ways.') }}
                     </p>
